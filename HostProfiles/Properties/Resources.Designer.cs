@@ -211,6 +211,26 @@ namespace HostProfiles.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No profiles found!
+        ///
+        ///Do you want to load your current hosts file?.
+        /// </summary>
+        internal static string LoadDefaultProfile {
+            get {
+                return ResourceManager.GetString("LoadDefaultProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load default profile?.
+        /// </summary>
+        internal static string LoadDefaultProfile_Title {
+            get {
+                return ResourceManager.GetString("LoadDefaultProfile.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap NewFile_6276_24 {

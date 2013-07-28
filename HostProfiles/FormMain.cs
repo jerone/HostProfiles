@@ -23,6 +23,8 @@ namespace HostProfiles
 		private const String path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";  // HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
 		private const String programName = "HostProfiles";
 
+		private String hosts = ReadHost();
+
 		#endregion Properties/Fields;
 
 		public FormMain()
@@ -141,9 +143,9 @@ namespace HostProfiles
 		{
 			if (ListViewProfiles.SelectedItems.Count == 0) return;
 
-			ListViewItem selectedProfile = ListViewProfiles.SelectedItems[0];
+			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
 
-			ApplyProfile(selectedProfile.Name);
+			ApplyProfile(selectedProfile);
 		}
 
 		#endregion ListView;
@@ -214,21 +216,21 @@ namespace HostProfiles
 		{
 			if (ListViewProfiles.SelectedItems.Count == 0) return;
 
-			ListViewItem selectedProfile = ListViewProfiles.SelectedItems[0];
+			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
 
-			ApplyProfile(selectedProfile.Name);
+			ApplyProfile(selectedProfile);
 		}
 
 		private void renameToolStripMenuItem1_Click(Object sender, EventArgs e)
 		{
 			if (ListViewProfiles.SelectedItems.Count == 0) return;
 
-			ListViewItem selectedProfile = ListViewProfiles.SelectedItems[0];
+			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
 
-			String profileNewName = selectedProfile.Name;
-			if (ShowInputDialog(Resources.EditProfile_Title, ref profileNewName) == System.Windows.Forms.DialogResult.OK)
+			String profileNewName = selectedProfile;
+			if (ShowInputDialog(Resources.EditProfile_Title, ref profileNewName) == DialogResult.OK)
 			{
-				RenameProfile(selectedProfile.Name, profileNewName);
+				RenameProfile(selectedProfile, profileNewName);
 			}
 		}
 
@@ -236,11 +238,11 @@ namespace HostProfiles
 		{
 			if (ListViewProfiles.SelectedItems.Count == 0) return;
 
-			ListViewItem selectedProfile = ListViewProfiles.SelectedItems[0];
+			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
 
-			if (MessageBox.Show(String.Format(Resources.DeleteProfile, selectedProfile.Name), Resources.DeletePofile_Title, MessageBoxButtons.YesNo) == DialogResult.Yes)
+			if (MessageBox.Show(String.Format(Resources.DeleteProfile, selectedProfile), Resources.DeletePofile_Title, MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
-				RemoveProfile(selectedProfile.Name);
+				RemoveProfile(selectedProfile);
 			}
 		}
 
@@ -349,23 +351,35 @@ namespace HostProfiles
 		private void LoadProfiles()
 		{
 			ListViewProfiles.Items.Clear();
-
-			String hosts = ReadHost();
+			switchProfilesToolStripMenuItem.DropDownItems.Clear();
+			TextBoxHost.Clear();
 
 			String[] files = Directory.GetFiles(basePath, "*.txt");
-			if (files == null || files.Length == 0)
+			if (files.Length > 0)
 			{
-				String current = GetFullPath("Current");
-				File.WriteAllText(current, hosts);
-				files = new[] { current };
+				foreach (var file in files)
+				{
+					LoadProfile(file);
+				}
 			}
-			foreach (var file in files)
+			else
 			{
-				LoadProfile(hosts, file);
+				//if (MessageBox.Show(Resources.LoadDefaultProfile, Resources.LoadDefaultProfile_Title, MessageBoxButtons.YesNo) == DialogResult.Yes)
+				//{
+				LoadProfile(DefaultProfile());
+				//}
 			}
 		}
 
-		private void LoadProfile(String hosts, String file)
+		private String DefaultProfile()
+		{
+			hosts = ReadHost();
+			String current = GetFullPath("Current");
+			File.WriteAllText(current, hosts);
+			return current;
+		}
+
+		private void LoadProfile(String file, Boolean clean = false)
 		{
 			// ListViewItem:
 			//	Text = file name
@@ -380,7 +394,7 @@ namespace HostProfiles
 
 			String profileHosts = File.ReadAllText(file);
 
-			Boolean hostProfileFound = hosts != null && profileHosts == hosts;
+			Boolean hostProfileFound = !clean && profileHosts == hosts;
 
 			ListViewItem profileListViewItem = new ListViewItem();
 			profileListViewItem.Name = profileName;
@@ -424,12 +438,19 @@ namespace HostProfiles
 				if (File.Exists(file))
 				{
 					MessageBox.Show(Resources.ProfileExists);
+
+					if (ShowInputDialog(Resources.AddProfile_Title, ref name) == System.Windows.Forms.DialogResult.OK)
+					{
+						AddProfile(name);
+					}
+
+					return;
 				}
 				else
 				{
 					File.WriteAllText(file, String.Empty);
 
-					LoadProfile(null, file);
+					LoadProfile(file, true);
 
 					ListViewProfiles.Items[name].Selected = true;
 				}
@@ -481,6 +502,13 @@ namespace HostProfiles
 					if (File.Exists(fileNew))
 					{
 						MessageBox.Show(Resources.ProfileExists);
+
+						if (ShowInputDialog(Resources.EditProfile_Title, ref profileNewName) == DialogResult.OK)
+						{
+							RenameProfile(profileOldName, profileNewName);
+						}
+
+						return;
 					}
 					else
 					{
@@ -513,6 +541,20 @@ namespace HostProfiles
 				ListViewProfiles.Items.RemoveByKey(profile);
 
 				switchProfilesToolStripMenuItem.DropDownItems.RemoveByKey(profile);
+
+				TextBoxHost.Text = String.Empty;
+
+				if (ListViewProfiles.Items.Count > 0)
+				{
+					ListViewProfiles.Items[ListViewProfiles.Items.Count - 1].Selected = true;
+				}
+				else
+				{
+					if (MessageBox.Show(Resources.LoadDefaultProfile, Resources.LoadDefaultProfile_Title, MessageBoxButtons.YesNo) == DialogResult.Yes)
+					{
+						LoadProfile(DefaultProfile());
+					}
+				}
 			}
 			catch (Exception ex)
 			{
@@ -520,7 +562,7 @@ namespace HostProfiles
 			}
 		}
 
-		private String ReadHost()
+		private static String ReadHost()
 		{
 			String path = ParseProcess(Env.HostPath);
 			if (File.Exists(path))
