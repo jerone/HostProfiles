@@ -76,6 +76,7 @@
 			this.tabPageLastMessage = new System.Windows.Forms.TabPage();
 			this.TextBoxMessage = new System.Windows.Forms.TextBox();
 			this.profilesContextMenuStrip.SuspendLayout();
+			this.statusStrip1.SuspendLayout();
 			this.systrayContextMenuStrip.SuspendLayout();
 			this.mainMenuStrip.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
@@ -159,9 +160,12 @@
 			this.statusStrip1.BackColor = System.Drawing.SystemColors.Control;
 			this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.statusStrip1.GripMargin = new System.Windows.Forms.Padding(0);
-			this.statusStrip1.Location = new System.Drawing.Point(576, 0);
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LabelStatus,
+            this.ProgressBar});
+			this.statusStrip1.Location = new System.Drawing.Point(659, 0);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(202, 26);
+			this.statusStrip1.Size = new System.Drawing.Size(119, 26);
 			this.statusStrip1.SizingGrip = false;
 			this.statusStrip1.TabIndex = 8;
 			this.statusStrip1.Text = "statusStrip1";
@@ -251,7 +255,7 @@
             this.helpMainToolStripMenuItem});
 			this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
 			this.mainMenuStrip.Name = "mainMenuStrip";
-			this.mainMenuStrip.Size = new System.Drawing.Size(576, 26);
+			this.mainMenuStrip.Size = new System.Drawing.Size(659, 26);
 			this.mainMenuStrip.TabIndex = 9;
 			this.mainMenuStrip.Text = "mainMenuStrip";
 			// 
@@ -300,20 +304,20 @@
 			// autoStartMainToolStripMenuItem
 			// 
 			this.autoStartMainToolStripMenuItem.Name = "autoStartMainToolStripMenuItem";
-			this.autoStartMainToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.autoStartMainToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
 			this.autoStartMainToolStripMenuItem.Text = "&Auto Startup";
 			this.autoStartMainToolStripMenuItem.Click += new System.EventHandler(this.autoStartMainToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
 			// 
 			// flushDnsMainToolStripMenuItem
 			// 
 			this.flushDnsMainToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Event_594_exp;
 			this.flushDnsMainToolStripMenuItem.Name = "flushDnsMainToolStripMenuItem";
-			this.flushDnsMainToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.flushDnsMainToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
 			this.flushDnsMainToolStripMenuItem.Text = "&Flush DNS";
 			this.flushDnsMainToolStripMenuItem.Click += new System.EventHandler(this.flushDnsMainToolStripMenuItem_Click);
 			// 
@@ -321,7 +325,7 @@
 			// 
 			this.iisresetToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.WebForm_ASPX__815_16x;
 			this.iisresetToolStripMenuItem.Name = "iisresetToolStripMenuItem";
-			this.iisresetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.iisresetToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
 			this.iisresetToolStripMenuItem.Text = "IIS Reset";
 			this.iisresetToolStripMenuItem.Click += new System.EventHandler(this.iisresetToolStripMenuItem_Click);
 			// 
@@ -368,7 +372,6 @@
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 1;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(778, 26);
 			this.tableLayoutPanel2.TabIndex = 11;
 			// 
@@ -552,6 +555,8 @@
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
 			this.Load += new System.EventHandler(this.FormMain_Load);
 			this.profilesContextMenuStrip.ResumeLayout(false);
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.systrayContextMenuStrip.ResumeLayout(false);
 			this.mainMenuStrip.ResumeLayout(false);
 			this.mainMenuStrip.PerformLayout();
