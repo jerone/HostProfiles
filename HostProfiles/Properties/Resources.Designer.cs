@@ -211,6 +211,16 @@ namespace HostProfiles.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Instance_5746 {
+            get {
+                object obj = ResourceManager.GetObject("Instance_5746", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No profiles found!
         ///
         ///Do you want to load your current hosts file?.

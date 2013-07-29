@@ -221,6 +221,15 @@ namespace HostProfiles
 			ApplyProfile(selectedProfile);
 		}
 
+		private void duplicateToolStripMenuItem_Click(Object sender, EventArgs e)
+		{
+			if (ListViewProfiles.SelectedItems.Count == 0) return;
+
+			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
+
+			DuplicateProfile(selectedProfile);
+		}
+
 		private void renameToolStripMenuItem1_Click(Object sender, EventArgs e)
 		{
 			if (ListViewProfiles.SelectedItems.Count == 0) return;
@@ -364,10 +373,7 @@ namespace HostProfiles
 			}
 			else
 			{
-				//if (MessageBox.Show(Resources.LoadDefaultProfile, Resources.LoadDefaultProfile_Title, MessageBoxButtons.YesNo) == DialogResult.Yes)
-				//{
 				LoadProfile(DefaultProfile());
-				//}
 			}
 		}
 
@@ -428,20 +434,20 @@ namespace HostProfiles
 			switchProfilesToolStripMenuItem.DropDownItems.Add(profileToolStripItem);
 		}
 
-		private void AddProfile(String name)
+		private void AddProfile(String profile)
 		{
-			if (String.IsNullOrEmpty(name)) return;
+			if (String.IsNullOrEmpty(profile)) return;
 
 			try
 			{
-				String file = GetFullPath(name);
+				String file = GetFullPath(profile);
 				if (File.Exists(file))
 				{
 					MessageBox.Show(Resources.ProfileExists);
 
-					if (ShowInputDialog(Resources.AddProfile_Title, ref name) == System.Windows.Forms.DialogResult.OK)
+					if (ShowInputDialog(Resources.AddProfile_Title, ref profile) == System.Windows.Forms.DialogResult.OK)
 					{
-						AddProfile(name);
+						AddProfile(profile);
 					}
 
 					return;
@@ -452,7 +458,7 @@ namespace HostProfiles
 
 					LoadProfile(file, true);
 
-					ListViewProfiles.Items[name].Selected = true;
+					ListViewProfiles.Items[profile].Selected = true;
 				}
 			}
 			catch (Exception ex)
@@ -461,9 +467,9 @@ namespace HostProfiles
 			}
 		}
 
-		private void ApplyProfile(String profileName)
+		private void ApplyProfile(String profile)
 		{
-			ListViewItem selectedProfile = ListViewProfiles.Items[profileName];
+			ListViewItem selectedProfile = ListViewProfiles.Items[profile];
 
 			foreach (ListViewItem profileListViewItem in ListViewProfiles.Items)
 			{
@@ -489,23 +495,23 @@ namespace HostProfiles
 			ExecuteAction(Action.FlushDNS);
 		}
 
-		private void RenameProfile(String profileOldName, String profileNewName)
+		private void RenameProfile(String profileOld, String profileNew)
 		{
-			if (String.IsNullOrEmpty(profileNewName)) return;
+			if (String.IsNullOrEmpty(profileNew)) return;
 
 			try
 			{
-				String fileOld = GetFullPath(profileOldName);
+				String fileOld = GetFullPath(profileOld);
 				if (File.Exists(fileOld))
 				{
-					String fileNew = GetFullPath(profileNewName);
+					String fileNew = GetFullPath(profileNew);
 					if (File.Exists(fileNew))
 					{
 						MessageBox.Show(Resources.ProfileExists);
 
-						if (ShowInputDialog(Resources.EditProfile_Title, ref profileNewName) == DialogResult.OK)
+						if (ShowInputDialog(Resources.EditProfile_Title, ref profileNew) == DialogResult.OK)
 						{
-							RenameProfile(profileOldName, profileNewName);
+							RenameProfile(profileOld, profileNew);
 						}
 
 						return;
@@ -515,14 +521,14 @@ namespace HostProfiles
 						File.Move(fileOld, fileNew);
 						File.Delete(fileOld);
 
-						ListViewItem profileListViewItem = ListViewProfiles.Items[profileOldName];
-						profileListViewItem.Text = profileNewName;
-						profileListViewItem.Name = profileNewName;
+						ListViewItem profileListViewItem = ListViewProfiles.Items[profileOld];
+						profileListViewItem.Text = profileNew;
+						profileListViewItem.Name = profileNew;
 						profileListViewItem.Selected = true;
 
-						ToolStripItem profileToolStripItem = switchProfilesToolStripMenuItem.DropDownItems[profileOldName];
-						profileToolStripItem.Text = profileNewName;
-						profileToolStripItem.Name = profileNewName;
+						ToolStripItem profileToolStripItem = switchProfilesToolStripMenuItem.DropDownItems[profileOld];
+						profileToolStripItem.Text = profileNew;
+						profileToolStripItem.Name = profileNew;
 					}
 				}
 			}
@@ -554,6 +560,38 @@ namespace HostProfiles
 					{
 						LoadProfile(DefaultProfile());
 					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+			}
+		}
+
+		private void DuplicateProfile(String profile)
+		{
+			if (String.IsNullOrEmpty(profile)) return;
+
+			String profileOld = profile;
+			String profileNew = profile;
+
+			try
+			{
+				String fileOld = GetFullPath(profileOld);
+				if (File.Exists(fileOld))
+				{
+					String fileNew = GetFullPath(profileNew);
+					while (File.Exists(fileNew))
+					{
+						profileNew += " - Copy";
+						fileNew = GetFullPath(profileNew);
+					}
+
+					File.Copy(fileOld, fileNew);
+
+					LoadProfile(fileNew, true);
+
+					ListViewProfiles.Items[profileNew].Selected = true;
 				}
 			}
 			catch (Exception ex)

@@ -34,6 +34,7 @@
 			this.newProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.applyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.duplicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.renameToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.profilesImageList = new System.Windows.Forms.ImageList(this.components);
@@ -98,10 +99,11 @@
             this.newProfileToolStripMenuItem,
             this.toolStripSeparator3,
             this.applyToolStripMenuItem,
+            this.duplicateToolStripMenuItem,
             this.renameToolStripMenuItem1,
             this.deleteToolStripMenuItem});
 			this.profilesContextMenuStrip.Name = "contextMenuStrip1";
-			this.profilesContextMenuStrip.Size = new System.Drawing.Size(221, 98);
+			this.profilesContextMenuStrip.Size = new System.Drawing.Size(221, 120);
 			// 
 			// newProfileToolStripMenuItem
 			// 
@@ -124,6 +126,14 @@
 			this.applyToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
 			this.applyToolStripMenuItem.Text = "&Apply && Flush DNS";
 			this.applyToolStripMenuItem.Click += new System.EventHandler(this.applyToolStripMenuItem_Click);
+			// 
+			// duplicateToolStripMenuItem
+			// 
+			this.duplicateToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Instance_5746;
+			this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
+			this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+			this.duplicateToolStripMenuItem.Text = "D&uplicate";
+			this.duplicateToolStripMenuItem.Click += new System.EventHandler(this.duplicateToolStripMenuItem_Click);
 			// 
 			// renameToolStripMenuItem1
 			// 
@@ -626,6 +636,7 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem iisresetToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem duplicateToolStripMenuItem;
 	}
 }
 
