@@ -167,6 +167,22 @@ namespace HostProfiles
 			ApplyProfile(selectedProfile);
 		}
 
+		private void ListViewProfiles_MouseDown(Object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Right)
+			{
+				var hitTest = ListViewProfiles.HitTest(e.Location);
+				if (hitTest != null && hitTest.Item != null)
+				{
+					ListViewProfiles.ContextMenuStrip = profilesContextMenuStrip;
+				}
+				else
+				{
+					ListViewProfiles.ContextMenuStrip = profilesOffContextMenuStrip;
+				}
+			}
+		}
+
 		#endregion ListView;
 
 		private void TextBoxProfile_TextChanged(Object sender, EventArgs e)

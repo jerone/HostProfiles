@@ -31,12 +31,12 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.profilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.newProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.applyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.duplicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.renameToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.newProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.profilesImageList = new System.Windows.Forms.ImageList(this.components);
 			this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -77,6 +77,7 @@
 			this.TextBoxIPs = new System.Windows.Forms.TextBox();
 			this.tabPageLastMessage = new System.Windows.Forms.TabPage();
 			this.TextBoxMessage = new System.Windows.Forms.TextBox();
+			this.profilesOffContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.profilesContextMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.systrayContextMenuStrip.SuspendLayout();
@@ -91,28 +92,20 @@
 			this.tabPageCurrent.SuspendLayout();
 			this.tabPageIP.SuspendLayout();
 			this.tabPageLastMessage.SuspendLayout();
+			this.profilesOffContextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// profilesContextMenuStrip
 			// 
 			this.profilesContextMenuStrip.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.profilesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newProfileToolStripMenuItem,
-            this.toolStripSeparator3,
             this.applyToolStripMenuItem,
+            this.toolStripSeparator3,
             this.duplicateToolStripMenuItem,
             this.renameToolStripMenuItem1,
             this.deleteToolStripMenuItem});
 			this.profilesContextMenuStrip.Name = "contextMenuStrip1";
-			this.profilesContextMenuStrip.Size = new System.Drawing.Size(221, 120);
-			// 
-			// newProfileToolStripMenuItem
-			// 
-			this.newProfileToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.NewFile_6276_24;
-			this.newProfileToolStripMenuItem.Name = "newProfileToolStripMenuItem";
-			this.newProfileToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-			this.newProfileToolStripMenuItem.Text = "&New Profile...";
-			this.newProfileToolStripMenuItem.Click += new System.EventHandler(this.newProfileToolStripMenuItem_Click);
+			this.profilesContextMenuStrip.Size = new System.Drawing.Size(221, 98);
 			// 
 			// toolStripSeparator3
 			// 
@@ -151,6 +144,14 @@
 			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
 			this.deleteToolStripMenuItem.Text = "&Delete";
 			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+			// 
+			// newProfileToolStripMenuItem
+			// 
+			this.newProfileToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.NewFile_6276_24;
+			this.newProfileToolStripMenuItem.Name = "newProfileToolStripMenuItem";
+			this.newProfileToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+			this.newProfileToolStripMenuItem.Text = "&New Profile...";
+			this.newProfileToolStripMenuItem.Click += new System.EventHandler(this.newProfileToolStripMenuItem_Click);
 			// 
 			// profilesImageList
 			// 
@@ -462,6 +463,7 @@
 			this.ListViewProfiles.View = System.Windows.Forms.View.Details;
 			this.ListViewProfiles.SelectedIndexChanged += new System.EventHandler(this.ListViewProfiles_SelectedIndexChanged);
 			this.ListViewProfiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListViewProfiles_MouseDoubleClick);
+			this.ListViewProfiles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListViewProfiles_MouseDown);
 			// 
 			// columnHeaderName
 			// 
@@ -559,6 +561,14 @@
 			this.TextBoxMessage.Size = new System.Drawing.Size(762, 286);
 			this.TextBoxMessage.TabIndex = 2;
 			// 
+			// profilesOffContextMenuStrip
+			// 
+			this.profilesOffContextMenuStrip.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.profilesOffContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newProfileToolStripMenuItem});
+			this.profilesOffContextMenuStrip.Name = "contextMenuStrip1";
+			this.profilesOffContextMenuStrip.Size = new System.Drawing.Size(168, 48);
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -597,6 +607,7 @@
 			this.tabPageIP.PerformLayout();
 			this.tabPageLastMessage.ResumeLayout(false);
 			this.tabPageLastMessage.PerformLayout();
+			this.profilesOffContextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -650,6 +661,7 @@
 		private System.Windows.Forms.ToolStripMenuItem iisresetToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem duplicateToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem minimizeAtStartupToolStripMenuItem;
+		private System.Windows.Forms.ContextMenuStrip profilesOffContextMenuStrip;
 	}
 }
 
