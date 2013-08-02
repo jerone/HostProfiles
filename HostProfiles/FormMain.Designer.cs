@@ -57,6 +57,7 @@
 			this.exitMainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolsMainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.autoStartMainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.minimizeAtStartupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.flushDnsMainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.iisresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -173,9 +174,9 @@
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LabelStatus,
             this.ProgressBar});
-			this.statusStrip1.Location = new System.Drawing.Point(659, 0);
+			this.statusStrip1.Location = new System.Drawing.Point(660, 0);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(119, 26);
+			this.statusStrip1.Size = new System.Drawing.Size(118, 26);
 			this.statusStrip1.SizingGrip = false;
 			this.statusStrip1.TabIndex = 8;
 			this.statusStrip1.Text = "statusStrip1";
@@ -189,6 +190,7 @@
 			// ProgressBar
 			// 
 			this.ProgressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.ProgressBar.Margin = new System.Windows.Forms.Padding(1, 3, 0, 3);
 			this.ProgressBar.Name = "ProgressBar";
 			this.ProgressBar.Size = new System.Drawing.Size(100, 20);
 			// 
@@ -265,7 +267,8 @@
             this.helpMainToolStripMenuItem});
 			this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
 			this.mainMenuStrip.Name = "mainMenuStrip";
-			this.mainMenuStrip.Size = new System.Drawing.Size(659, 26);
+			this.mainMenuStrip.Padding = new System.Windows.Forms.Padding(0);
+			this.mainMenuStrip.Size = new System.Drawing.Size(660, 26);
 			this.mainMenuStrip.TabIndex = 9;
 			this.mainMenuStrip.Text = "mainMenuStrip";
 			// 
@@ -276,7 +279,7 @@
             this.toolStripSeparator2,
             this.exitMainToolStripMenuItem});
 			this.fileMainToolStripMenuItem.Name = "fileMainToolStripMenuItem";
-			this.fileMainToolStripMenuItem.Size = new System.Drawing.Size(37, 22);
+			this.fileMainToolStripMenuItem.Size = new System.Drawing.Size(37, 26);
 			this.fileMainToolStripMenuItem.Text = "&File";
 			// 
 			// addProfileToolStripMenuItem
@@ -304,30 +307,38 @@
 			// 
 			this.toolsMainToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.autoStartMainToolStripMenuItem,
+            this.minimizeAtStartupToolStripMenuItem,
             this.toolStripSeparator1,
             this.flushDnsMainToolStripMenuItem,
             this.iisresetToolStripMenuItem});
 			this.toolsMainToolStripMenuItem.Name = "toolsMainToolStripMenuItem";
-			this.toolsMainToolStripMenuItem.Size = new System.Drawing.Size(48, 22);
+			this.toolsMainToolStripMenuItem.Size = new System.Drawing.Size(48, 26);
 			this.toolsMainToolStripMenuItem.Text = "&Tools";
 			// 
 			// autoStartMainToolStripMenuItem
 			// 
 			this.autoStartMainToolStripMenuItem.Name = "autoStartMainToolStripMenuItem";
-			this.autoStartMainToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+			this.autoStartMainToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
 			this.autoStartMainToolStripMenuItem.Text = "&Auto Startup";
 			this.autoStartMainToolStripMenuItem.Click += new System.EventHandler(this.autoStartMainToolStripMenuItem_Click);
+			// 
+			// minimizeAtStartupToolStripMenuItem
+			// 
+			this.minimizeAtStartupToolStripMenuItem.Name = "minimizeAtStartupToolStripMenuItem";
+			this.minimizeAtStartupToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+			this.minimizeAtStartupToolStripMenuItem.Text = "Minimize at Startup";
+			this.minimizeAtStartupToolStripMenuItem.Click += new System.EventHandler(this.minimizeAtStartupToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(174, 6);
 			// 
 			// flushDnsMainToolStripMenuItem
 			// 
 			this.flushDnsMainToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Event_594_exp;
 			this.flushDnsMainToolStripMenuItem.Name = "flushDnsMainToolStripMenuItem";
-			this.flushDnsMainToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+			this.flushDnsMainToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
 			this.flushDnsMainToolStripMenuItem.Text = "&Flush DNS";
 			this.flushDnsMainToolStripMenuItem.Click += new System.EventHandler(this.flushDnsMainToolStripMenuItem_Click);
 			// 
@@ -335,7 +346,7 @@
 			// 
 			this.iisresetToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.WebForm_ASPX__815_16x;
 			this.iisresetToolStripMenuItem.Name = "iisresetToolStripMenuItem";
-			this.iisresetToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+			this.iisresetToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
 			this.iisresetToolStripMenuItem.Text = "IIS Reset";
 			this.iisresetToolStripMenuItem.Click += new System.EventHandler(this.iisresetToolStripMenuItem_Click);
 			// 
@@ -344,7 +355,7 @@
 			this.helpMainToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutMainToolStripMenuItem});
 			this.helpMainToolStripMenuItem.Name = "helpMainToolStripMenuItem";
-			this.helpMainToolStripMenuItem.Size = new System.Drawing.Size(44, 22);
+			this.helpMainToolStripMenuItem.Size = new System.Drawing.Size(44, 26);
 			this.helpMainToolStripMenuItem.Text = "&Help";
 			// 
 			// aboutMainToolStripMenuItem
@@ -564,6 +575,7 @@
 			this.Text = "Host Profiles Management";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
 			this.Load += new System.EventHandler(this.FormMain_Load);
+			this.Shown += new System.EventHandler(this.FormMain_Shown);
 			this.profilesContextMenuStrip.ResumeLayout(false);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
@@ -637,6 +649,7 @@
 		private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem iisresetToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem duplicateToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem minimizeAtStartupToolStripMenuItem;
 	}
 }
 

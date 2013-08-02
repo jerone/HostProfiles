@@ -57,6 +57,16 @@ namespace HostProfiles
 
 			RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
 			autoStartMainToolStripMenuItem.Checked = key.GetValue(programName) != null;
+
+			minimizeAtStartupToolStripMenuItem.Checked = Settings.Default.minimizeAtStatup;
+		}
+
+		private void FormMain_Shown(Object sender, EventArgs e)
+		{
+			if (Settings.Default.minimizeAtStatup)
+			{
+				HideShow();
+			}
 		}
 
 		private void FormMain_FormClosing(Object sender, FormClosingEventArgs e)
@@ -65,6 +75,10 @@ namespace HostProfiles
 			{
 				e.Cancel = !goodbye;
 				HideShow();
+			}
+			else
+			{
+				Properties.Settings.Default.Save();
 			}
 		}
 
@@ -98,6 +112,11 @@ namespace HostProfiles
 				key.DeleteValue(programName, false);
 			}
 			autoStartMainToolStripMenuItem.Checked = !autoStartMainToolStripMenuItem.Checked;
+		}
+
+		private void minimizeAtStartupToolStripMenuItem_Click(Object sender, EventArgs e)
+		{
+			Settings.Default.minimizeAtStatup = minimizeAtStartupToolStripMenuItem.Checked = !minimizeAtStartupToolStripMenuItem.Checked;
 		}
 
 		private void flushDnsMainToolStripMenuItem_Click(Object sender, EventArgs e)
