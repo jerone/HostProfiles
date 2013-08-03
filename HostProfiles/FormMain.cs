@@ -1,8 +1,6 @@
-﻿using HostProfiles.Core;
-using HostProfiles.Properties;
+﻿using HostProfiles.Properties;
 using Microsoft.Win32;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -121,12 +119,12 @@ namespace HostProfiles
 
 		private void flushDnsMainToolStripMenuItem_Click(Object sender, EventArgs e)
 		{
-			ExecuteAction(Action.FlushDNS);
+			ExecuteFlush();
 		}
 
-		private void iisresetToolStripMenuItem_Click(object sender, EventArgs e)
+		private void iisresetToolStripMenuItem_Click(Object sender, EventArgs e)
 		{
-			ProcessUtil.Execute("cmd", "/C iisreset /restart");
+			ProcessUtil.Execute(Globals.IISReset, Globals.IISResetArgs);
 		}
 
 		private void aboutMainToolStripMenuItem_Click(Object sender, EventArgs e)
@@ -142,9 +140,6 @@ namespace HostProfiles
 			{
 				case 1:
 					TextBoxHost.Text = ReadHost();
-					break;
-				case 2:
-					ExecuteAction(Action.IPConfig);
 					break;
 			}
 		}
@@ -187,9 +182,6 @@ namespace HostProfiles
 
 		private void TextBoxProfile_TextChanged(Object sender, EventArgs e)
 		{
-			LabelStatus.Text = "";
-			ProgressBar.Value = 0;
-
 			if (ListViewProfiles.SelectedItems.Count == 0) return;
 
 			ListViewItem selectedProfile = ListViewProfiles.SelectedItems[0];
@@ -222,7 +214,7 @@ namespace HostProfiles
 
 		private void flushDNSToolStripMenuItemSystem_Click(Object sender, EventArgs e)
 		{
-			ExecuteAction(Action.FlushDNS);
+			ExecuteFlush();
 		}
 
 		private void profileSelectSystrayToolStripMenuItem_Click(Object sender, EventArgs e)
@@ -291,99 +283,6 @@ namespace HostProfiles
 		}
 
 		#endregion Context Menu;
-
-		#region BackgroundWorker;
-
-		private void backgroundWorker_DoWork(Object sender, DoWorkEventArgs e)
-		{
-			if (e.Argument != null)
-			{
-				Action action = (Action)e.Argument;
-				if (action == Action.FlushDNS)
-				{
-					Worker(TextBoxMessage, Resources.FlushMessage, false, Env.Flush, Env.FlushArg);
-					e.Result = Resources.FlushDNSDone;
-				}
-				else
-				{
-					Worker(TextBoxIPs, "{2}", true, Env.Info, Env.InfoArg);
-				}
-			}
-		}
-
-		private void backgroundWorker_RunWorkerCompleted(Object sender, RunWorkerCompletedEventArgs e)
-		{
-			if (e.Result != null)
-			{
-				LabelStatus.Text = e.Result.ToString();
-			}
-			else
-			{
-				LabelStatus.Text = "Done";
-			}
-			profilesContextMenuStrip.Enabled = true;
-		}
-
-		private void backgroundWorker_ProgressChanged(Object sender, ProgressChangedEventArgs e)
-		{
-			ProgressBar.Value = e.ProgressPercentage;
-			MessageAction msg = e.UserState as MessageAction;
-			if (msg != null)
-			{
-				if (msg.Flushed)
-				{
-					msg.TextBox.Text = msg.Message.Trim();
-				}
-				else
-				{
-					msg.TextBox.AppendText(msg.Message);
-				}
-			}
-		}
-
-		private void Worker(TextBox callBackTextBox, String callbackMessage, Boolean flushed, String process, String args)
-		{
-			try
-			{
-				backgroundWorker.ReportProgress(0);
-				String path = ParseProcess(process);
-				MessageAction msg = new MessageAction() { Flushed = flushed, TextBox = callBackTextBox };
-				String result = String.Empty;
-				if (File.Exists(path))
-				{
-					result = ProcessUtil.Execute(path, args);
-				}
-				else
-				{
-					result = String.Format(Resources.CommandNotFound, path, Env.Help);
-				}
-				msg.Message = String.Format(callbackMessage,
-											DateTime.Now,
-											Environment.NewLine,
-											result,
-											Environment.NewLine);
-				backgroundWorker.ReportProgress(50, msg);
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine(ex);
-			}
-			backgroundWorker.ReportProgress(100);
-		}
-
-		private static String ParseProcess(String process)
-		{
-#if WIN
-			DirectoryInfo di = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.System));
-			String path = String.Format(process, di.FullName);
-			return path;
-#endif
-#if LINUX
-			return process;		
-#endif
-		}
-
-		#endregion BackgroundWorker;
 
 		#region Private Methods;
 
@@ -527,7 +426,7 @@ namespace HostProfiles
 
 			OverrideHostFile(selectedProfile.Tag.ToString());
 
-			ExecuteAction(Action.FlushDNS);
+			ExecuteFlush();
 		}
 
 		private void RenameProfile(String profileOld, String profileNew)
@@ -637,7 +536,7 @@ namespace HostProfiles
 
 		private static String ReadHost()
 		{
-			String path = ParseProcess(Env.HostPath);
+			String path = Globals.HostPath;
 			if (File.Exists(path))
 			{
 				return File.ReadAllText(path);
@@ -647,7 +546,7 @@ namespace HostProfiles
 
 		private Boolean OverrideHostFile(String content)
 		{
-			String path = ParseProcess(Env.HostPath);
+			String path = Globals.HostPath;
 			try
 			{
 				if (File.Exists(path))
@@ -663,11 +562,17 @@ namespace HostProfiles
 			return false;
 		}
 
-		private void ExecuteAction(Action action)
+		private void ExecuteFlush()
 		{
-			LabelStatus.Text = Resources.Waiting;
-			profilesContextMenuStrip.Enabled = false;
-			backgroundWorker.RunWorkerAsync(action);
+			ProgressBar.Value = 0;
+
+			String path = Globals.Flush;
+			if (File.Exists(path))
+			{
+				ProcessUtil.Execute(path, Globals.FlushArgs);
+			}
+
+			ProgressBar.Value = 100;
 		}
 
 		private void ShowAbout()

@@ -31,16 +31,14 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.profilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.applyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.duplicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.renameToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.profilesImageList = new System.Windows.Forms.ImageList(this.components);
-			this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-			this.LabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
 			this.NotifyIconProfiles = new System.Windows.Forms.NotifyIcon(this.components);
 			this.systrayContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -73,10 +71,6 @@
 			this.TextBoxProfile = new System.Windows.Forms.TextBox();
 			this.tabPageCurrent = new System.Windows.Forms.TabPage();
 			this.TextBoxHost = new System.Windows.Forms.TextBox();
-			this.tabPageIP = new System.Windows.Forms.TabPage();
-			this.TextBoxIPs = new System.Windows.Forms.TextBox();
-			this.tabPageLastMessage = new System.Windows.Forms.TabPage();
-			this.TextBoxMessage = new System.Windows.Forms.TextBox();
 			this.profilesOffContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.profilesContextMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -90,8 +84,6 @@
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.tabPageCurrent.SuspendLayout();
-			this.tabPageIP.SuspendLayout();
-			this.tabPageLastMessage.SuspendLayout();
 			this.profilesOffContextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -107,11 +99,6 @@
 			this.profilesContextMenuStrip.Name = "contextMenuStrip1";
 			this.profilesContextMenuStrip.Size = new System.Drawing.Size(221, 98);
 			// 
-			// toolStripSeparator3
-			// 
-			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(217, 6);
-			// 
 			// applyToolStripMenuItem
 			// 
 			this.applyToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -120,6 +107,11 @@
 			this.applyToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
 			this.applyToolStripMenuItem.Text = "&Apply && Flush DNS";
 			this.applyToolStripMenuItem.Click += new System.EventHandler(this.applyToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator3
+			// 
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			this.toolStripSeparator3.Size = new System.Drawing.Size(217, 6);
 			// 
 			// duplicateToolStripMenuItem
 			// 
@@ -160,33 +152,19 @@
 			this.profilesImageList.Images.SetKeyName(0, "flag_16xSM.png");
 			this.profilesImageList.Images.SetKeyName(1, "flag_16xLG.png");
 			// 
-			// backgroundWorker
-			// 
-			this.backgroundWorker.WorkerReportsProgress = true;
-			this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
-			this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
-			this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
-			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.BackColor = System.Drawing.SystemColors.Control;
 			this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.statusStrip1.GripMargin = new System.Windows.Forms.Padding(0);
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.LabelStatus,
             this.ProgressBar});
-			this.statusStrip1.Location = new System.Drawing.Point(660, 0);
+			this.statusStrip1.Location = new System.Drawing.Point(629, 0);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(118, 26);
+			this.statusStrip1.Size = new System.Drawing.Size(149, 26);
 			this.statusStrip1.SizingGrip = false;
 			this.statusStrip1.TabIndex = 8;
 			this.statusStrip1.Text = "statusStrip1";
-			// 
-			// LabelStatus
-			// 
-			this.LabelStatus.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.LabelStatus.Name = "LabelStatus";
-			this.LabelStatus.Size = new System.Drawing.Size(0, 21);
 			// 
 			// ProgressBar
 			// 
@@ -269,7 +247,7 @@
 			this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
 			this.mainMenuStrip.Name = "mainMenuStrip";
 			this.mainMenuStrip.Padding = new System.Windows.Forms.Padding(0);
-			this.mainMenuStrip.Size = new System.Drawing.Size(660, 26);
+			this.mainMenuStrip.Size = new System.Drawing.Size(629, 26);
 			this.mainMenuStrip.TabIndex = 9;
 			this.mainMenuStrip.Text = "mainMenuStrip";
 			// 
@@ -401,8 +379,6 @@
 			// 
 			this.tabControlMain.Controls.Add(this.tabPage1);
 			this.tabControlMain.Controls.Add(this.tabPageCurrent);
-			this.tabControlMain.Controls.Add(this.tabPageIP);
-			this.tabControlMain.Controls.Add(this.tabPageLastMessage);
 			this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControlMain.Location = new System.Drawing.Point(4, 36);
 			this.tabControlMain.Margin = new System.Windows.Forms.Padding(4);
@@ -511,63 +487,13 @@
 			this.TextBoxHost.Size = new System.Drawing.Size(760, 284);
 			this.TextBoxHost.TabIndex = 1;
 			// 
-			// tabPageIP
-			// 
-			this.tabPageIP.Controls.Add(this.TextBoxIPs);
-			this.tabPageIP.Location = new System.Drawing.Point(4, 26);
-			this.tabPageIP.Name = "tabPageIP";
-			this.tabPageIP.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageIP.Size = new System.Drawing.Size(768, 292);
-			this.tabPageIP.TabIndex = 2;
-			this.tabPageIP.Text = "Network Info";
-			this.tabPageIP.UseVisualStyleBackColor = true;
-			// 
-			// TextBoxIPs
-			// 
-			this.TextBoxIPs.BackColor = System.Drawing.SystemColors.Window;
-			this.TextBoxIPs.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.TextBoxIPs.Font = new System.Drawing.Font("Lucida Console", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-			this.TextBoxIPs.Location = new System.Drawing.Point(3, 3);
-			this.TextBoxIPs.Margin = new System.Windows.Forms.Padding(4);
-			this.TextBoxIPs.Multiline = true;
-			this.TextBoxIPs.Name = "TextBoxIPs";
-			this.TextBoxIPs.ReadOnly = true;
-			this.TextBoxIPs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.TextBoxIPs.Size = new System.Drawing.Size(762, 286);
-			this.TextBoxIPs.TabIndex = 2;
-			// 
-			// tabPageLastMessage
-			// 
-			this.tabPageLastMessage.Controls.Add(this.TextBoxMessage);
-			this.tabPageLastMessage.Location = new System.Drawing.Point(4, 26);
-			this.tabPageLastMessage.Name = "tabPageLastMessage";
-			this.tabPageLastMessage.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageLastMessage.Size = new System.Drawing.Size(768, 292);
-			this.tabPageLastMessage.TabIndex = 3;
-			this.tabPageLastMessage.Text = "Messages";
-			this.tabPageLastMessage.UseVisualStyleBackColor = true;
-			// 
-			// TextBoxMessage
-			// 
-			this.TextBoxMessage.BackColor = System.Drawing.SystemColors.Window;
-			this.TextBoxMessage.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.TextBoxMessage.Font = new System.Drawing.Font("Lucida Console", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-			this.TextBoxMessage.Location = new System.Drawing.Point(3, 3);
-			this.TextBoxMessage.Margin = new System.Windows.Forms.Padding(4);
-			this.TextBoxMessage.Multiline = true;
-			this.TextBoxMessage.Name = "TextBoxMessage";
-			this.TextBoxMessage.ReadOnly = true;
-			this.TextBoxMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.TextBoxMessage.Size = new System.Drawing.Size(762, 286);
-			this.TextBoxMessage.TabIndex = 2;
-			// 
 			// profilesOffContextMenuStrip
 			// 
 			this.profilesOffContextMenuStrip.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.profilesOffContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newProfileToolStripMenuItem});
 			this.profilesOffContextMenuStrip.Name = "contextMenuStrip1";
-			this.profilesOffContextMenuStrip.Size = new System.Drawing.Size(168, 48);
+			this.profilesOffContextMenuStrip.Size = new System.Drawing.Size(168, 26);
 			// 
 			// FormMain
 			// 
@@ -603,10 +529,6 @@
 			this.splitContainer1.ResumeLayout(false);
 			this.tabPageCurrent.ResumeLayout(false);
 			this.tabPageCurrent.PerformLayout();
-			this.tabPageIP.ResumeLayout(false);
-			this.tabPageIP.PerformLayout();
-			this.tabPageLastMessage.ResumeLayout(false);
-			this.tabPageLastMessage.PerformLayout();
 			this.profilesOffContextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -617,9 +539,7 @@
 		private System.Windows.Forms.ContextMenuStrip profilesContextMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem applyToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-		private System.ComponentModel.BackgroundWorker backgroundWorker;
 		private System.Windows.Forms.StatusStrip statusStrip1;
-		private System.Windows.Forms.ToolStripStatusLabel LabelStatus;
 		private System.Windows.Forms.ToolStripProgressBar ProgressBar;
 		private System.Windows.Forms.NotifyIcon NotifyIconProfiles;
 		private System.Windows.Forms.ContextMenuStrip systrayContextMenuStrip;
@@ -651,10 +571,6 @@
 		private System.Windows.Forms.TextBox TextBoxProfile;
 		private System.Windows.Forms.TabPage tabPageCurrent;
 		private System.Windows.Forms.TextBox TextBoxHost;
-		private System.Windows.Forms.TabPage tabPageIP;
-		private System.Windows.Forms.TextBox TextBoxIPs;
-		private System.Windows.Forms.TabPage tabPageLastMessage;
-		private System.Windows.Forms.TextBox TextBoxMessage;
 		private System.Windows.Forms.ToolStripMenuItem newProfileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem1;

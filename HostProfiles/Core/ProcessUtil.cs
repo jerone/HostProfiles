@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace HostProfiles.Core
+namespace HostProfiles
 {
 	public class ProcessUtil
 	{
@@ -12,10 +12,6 @@ namespace HostProfiles.Core
 				p.StartInfo = new System.Diagnostics.ProcessStartInfo();
 				p.StartInfo.FileName = process;
 				p.StartInfo.Arguments = arges;
-#if LINUX
-				//p.StartInfo.FileName = "/usr/bin/sudo";	
-				//p.StartInfo.Arguments = process + " " + arges;					
-#endif
 				p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
 				p.StartInfo.RedirectStandardOutput = true;
 				p.StartInfo.UseShellExecute = false;

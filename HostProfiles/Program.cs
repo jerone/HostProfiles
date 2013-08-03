@@ -1,7 +1,5 @@
-﻿using HostProfiles.Properties;
-using Microsoft.VisualBasic.ApplicationServices;
+﻿using Microsoft.VisualBasic.ApplicationServices;
 using System;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace HostProfiles
@@ -47,7 +45,6 @@ namespace HostProfiles
 		protected override void OnCreateMainForm()
 		{
 			// Instantiate your main application form
-			Env.Load();
 			this.MainForm = new FormMain();
 		}
 	}
