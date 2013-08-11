@@ -34,7 +34,7 @@
 			this.applyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.duplicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.renameToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.profilesImageList = new System.Windows.Forms.ImageList(this.components);
@@ -72,6 +72,8 @@
 			this.tabPageCurrent = new System.Windows.Forms.TabPage();
 			this.TextBoxHost = new System.Windows.Forms.TextBox();
 			this.profilesOffContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.profilesRealHostsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.newProfile2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.profilesContextMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.systrayContextMenuStrip.SuspendLayout();
@@ -85,6 +87,7 @@
 			this.splitContainer1.SuspendLayout();
 			this.tabPageCurrent.SuspendLayout();
 			this.profilesOffContextMenuStrip.SuspendLayout();
+			this.profilesRealHostsContextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// profilesContextMenuStrip
@@ -94,7 +97,7 @@
             this.applyToolStripMenuItem,
             this.toolStripSeparator3,
             this.duplicateToolStripMenuItem,
-            this.renameToolStripMenuItem1,
+            this.renameToolStripMenuItem,
             this.deleteToolStripMenuItem});
 			this.profilesContextMenuStrip.Name = "contextMenuStrip1";
 			this.profilesContextMenuStrip.Size = new System.Drawing.Size(221, 98);
@@ -121,13 +124,13 @@
 			this.duplicateToolStripMenuItem.Text = "D&uplicate";
 			this.duplicateToolStripMenuItem.Click += new System.EventHandler(this.duplicateToolStripMenuItem_Click);
 			// 
-			// renameToolStripMenuItem1
+			// renameToolStripMenuItem
 			// 
-			this.renameToolStripMenuItem1.Image = global::HostProfiles.Properties.Resources.Rename_6779_32;
-			this.renameToolStripMenuItem1.Name = "renameToolStripMenuItem1";
-			this.renameToolStripMenuItem1.Size = new System.Drawing.Size(220, 22);
-			this.renameToolStripMenuItem1.Text = "&Rename";
-			this.renameToolStripMenuItem1.Click += new System.EventHandler(this.renameToolStripMenuItem1_Click);
+			this.renameToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Rename_6779_32;
+			this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+			this.renameToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+			this.renameToolStripMenuItem.Text = "&Rename";
+			this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem1_Click);
 			// 
 			// deleteToolStripMenuItem
 			// 
@@ -159,9 +162,9 @@
 			this.statusStrip1.GripMargin = new System.Windows.Forms.Padding(0);
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ProgressBar});
-			this.statusStrip1.Location = new System.Drawing.Point(629, 0);
+			this.statusStrip1.Location = new System.Drawing.Point(660, 0);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(149, 26);
+			this.statusStrip1.Size = new System.Drawing.Size(118, 26);
 			this.statusStrip1.SizingGrip = false;
 			this.statusStrip1.TabIndex = 8;
 			this.statusStrip1.Text = "statusStrip1";
@@ -247,7 +250,7 @@
 			this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
 			this.mainMenuStrip.Name = "mainMenuStrip";
 			this.mainMenuStrip.Padding = new System.Windows.Forms.Padding(0);
-			this.mainMenuStrip.Size = new System.Drawing.Size(629, 26);
+			this.mainMenuStrip.Size = new System.Drawing.Size(660, 26);
 			this.mainMenuStrip.TabIndex = 9;
 			this.mainMenuStrip.Text = "mainMenuStrip";
 			// 
@@ -495,6 +498,22 @@
 			this.profilesOffContextMenuStrip.Name = "contextMenuStrip1";
 			this.profilesOffContextMenuStrip.Size = new System.Drawing.Size(168, 26);
 			// 
+			// profilesRealHostsContextMenuStrip
+			// 
+			this.profilesRealHostsContextMenuStrip.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.profilesRealHostsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newProfile2ToolStripMenuItem});
+			this.profilesRealHostsContextMenuStrip.Name = "contextMenuStrip1";
+			this.profilesRealHostsContextMenuStrip.Size = new System.Drawing.Size(259, 48);
+			// 
+			// newProfile2ToolStripMenuItem
+			// 
+			this.newProfile2ToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Instance_5746;
+			this.newProfile2ToolStripMenuItem.Name = "newProfile2ToolStripMenuItem";
+			this.newProfile2ToolStripMenuItem.Size = new System.Drawing.Size(258, 22);
+			this.newProfile2ToolStripMenuItem.Text = "&Create Profile form here...";
+			this.newProfile2ToolStripMenuItem.Click += new System.EventHandler(this.newProfile2ToolStripMenuItem_Click);
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -530,6 +549,7 @@
 			this.tabPageCurrent.ResumeLayout(false);
 			this.tabPageCurrent.PerformLayout();
 			this.profilesOffContextMenuStrip.ResumeLayout(false);
+			this.profilesRealHostsContextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -573,11 +593,13 @@
 		private System.Windows.Forms.TextBox TextBoxHost;
 		private System.Windows.Forms.ToolStripMenuItem newProfileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-		private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem iisresetToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem duplicateToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem minimizeAtStartupToolStripMenuItem;
 		private System.Windows.Forms.ContextMenuStrip profilesOffContextMenuStrip;
+		private System.Windows.Forms.ContextMenuStrip profilesRealHostsContextMenuStrip;
+		private System.Windows.Forms.ToolStripMenuItem newProfile2ToolStripMenuItem;
 	}
 }
 

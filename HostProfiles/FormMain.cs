@@ -16,7 +16,10 @@ namespace HostProfiles
 		String basePath = String.Empty;
 		Font baseFont;
 		Font boldFont;
+		Font italicFont;
 		Boolean goodbye = false;
+
+		String RealHosts = "Current Hosts";
 
 		private const String path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";  // HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
 		private const String programName = "HostProfiles";
@@ -32,6 +35,7 @@ namespace HostProfiles
 			basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + Path.DirectorySeparatorChar, "Profiles" + Path.DirectorySeparatorChar);
 			baseFont = this.Font;
 			boldFont = new Font(baseFont, FontStyle.Bold);
+			italicFont = new Font(baseFont, FontStyle.Italic);
 
 			fileMainToolStripMenuItem.Text = fileMainToolStripMenuItem.Text.ToUpper();
 			toolsMainToolStripMenuItem.Text = toolsMainToolStripMenuItem.Text.ToUpper();
@@ -150,7 +154,19 @@ namespace HostProfiles
 		{
 			if (ListViewProfiles.SelectedItems.Count == 0) return;
 
-			TextBoxProfile.Text = ListViewProfiles.SelectedItems[0].Tag.ToString();
+			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
+
+			if (selectedProfile == RealHosts)
+			{
+				hosts = ReadHost();
+				TextBoxProfile.Text = hosts;
+				TextBoxProfile.ReadOnly = true;
+			}
+			else
+			{
+				TextBoxProfile.Text = ListViewProfiles.SelectedItems[0].Tag.ToString();
+				TextBoxProfile.ReadOnly = false;
+			}
 		}
 
 		private void ListViewProfiles_MouseDoubleClick(Object sender, MouseEventArgs e)
@@ -158,6 +174,8 @@ namespace HostProfiles
 			if (ListViewProfiles.SelectedItems.Count == 0) return;
 
 			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
+
+			if (selectedProfile == RealHosts) return;
 
 			ApplyProfile(selectedProfile);
 		}
@@ -169,7 +187,14 @@ namespace HostProfiles
 				var hitTest = ListViewProfiles.HitTest(e.Location);
 				if (hitTest != null && hitTest.Item != null)
 				{
-					ListViewProfiles.ContextMenuStrip = profilesContextMenuStrip;
+					if (hitTest.Item.Name == RealHosts)
+					{
+						ListViewProfiles.ContextMenuStrip = profilesRealHostsContextMenuStrip;
+					}
+					else
+					{
+						ListViewProfiles.ContextMenuStrip = profilesContextMenuStrip;
+					}
 				}
 				else
 				{
@@ -185,6 +210,8 @@ namespace HostProfiles
 			if (ListViewProfiles.SelectedItems.Count == 0) return;
 
 			ListViewItem selectedProfile = ListViewProfiles.SelectedItems[0];
+
+			if (selectedProfile.Name == RealHosts) return;
 
 			selectedProfile.Tag = TextBoxProfile.Text;
 			File.WriteAllText(GetFullPath(selectedProfile.Name), selectedProfile.Tag.ToString());
@@ -236,6 +263,22 @@ namespace HostProfiles
 			if (ShowInputDialog(Resources.AddProfile_Title, ref profileName) == System.Windows.Forms.DialogResult.OK)
 			{
 				AddProfile(profileName);
+			}
+		}
+
+		private void newProfile2ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (ListViewProfiles.SelectedItems.Count == 0) return;
+
+			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
+
+			if (selectedProfile != RealHosts) return;
+
+			String profileName = "_DEFAULT";
+			if (ShowInputDialog(Resources.AddProfile_Title, ref profileName) == System.Windows.Forms.DialogResult.OK)
+			{
+				hosts = ReadHost();
+				AddProfile(profileName, hosts);
 			}
 		}
 
@@ -296,6 +339,8 @@ namespace HostProfiles
 			ListViewProfiles.Items.Clear();
 			switchProfilesToolStripMenuItem.DropDownItems.Clear();
 			TextBoxHost.Clear();
+
+			LoadRealProfile();
 
 			String[] files = Directory.GetFiles(basePath, "*.txt");
 			if (files.Length > 0)
@@ -368,7 +413,22 @@ namespace HostProfiles
 			switchProfilesToolStripMenuItem.DropDownItems.Add(profileToolStripItem);
 		}
 
-		private void AddProfile(String profile)
+		private void LoadRealProfile()
+		{
+			hosts = ReadHost();
+
+			ListViewItem profileListViewItem = new ListViewItem();
+			profileListViewItem.Name = RealHosts;
+			profileListViewItem.Text = RealHosts;
+			profileListViewItem.Tag = hosts;
+
+			profileListViewItem.Font = italicFont;
+			profileListViewItem.ImageIndex = 0;
+
+			ListViewProfiles.Items.Add(profileListViewItem);
+		}
+
+		private void AddProfile(String profile, String hosts = "")
 		{
 			if (String.IsNullOrEmpty(profile)) return;
 
@@ -381,14 +441,14 @@ namespace HostProfiles
 
 					if (ShowInputDialog(Resources.AddProfile_Title, ref profile) == System.Windows.Forms.DialogResult.OK)
 					{
-						AddProfile(profile);
+						AddProfile(profile, hosts);
 					}
 
 					return;
 				}
 				else
 				{
-					File.WriteAllText(file, String.Empty);
+					File.WriteAllText(file, hosts);
 
 					LoadProfile(file, true);
 
@@ -405,8 +465,12 @@ namespace HostProfiles
 		{
 			ListViewItem selectedProfile = ListViewProfiles.Items[profile];
 
+			if (selectedProfile.Name == RealHosts) return;
+
 			foreach (ListViewItem profileListViewItem in ListViewProfiles.Items)
 			{
+				if (profileListViewItem.Name == RealHosts) continue;
+
 				ToolStripItem profileToolStripItem = switchProfilesToolStripMenuItem.DropDownItems[profileListViewItem.Name];
 				if (profileListViewItem == selectedProfile)
 				{
