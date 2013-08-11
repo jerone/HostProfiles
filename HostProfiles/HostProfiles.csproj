@@ -125,6 +125,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Resources\FlagThread-Flagged,NotHot,NotSelected_10392_16x small.png" />
+    <Content Include="Resources\FlagThread-Flagged,NotHot,NotSelected_10392_16x.png" />
     <Content Include="Resources\Instance_5746.png" />
     <Content Include="Resources\Rename_6779_32.png" />
     <Content Include="Resources\WebForm%28ASPX%29_815_16x.png" />
