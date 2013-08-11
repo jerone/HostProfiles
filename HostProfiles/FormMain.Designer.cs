@@ -362,8 +362,8 @@
 			// splitContainer1
 			// 
 			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer1.Location = new System.Drawing.Point(4, 36);
-			this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
+			this.splitContainer1.Location = new System.Drawing.Point(3, 32);
+			this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
 			this.splitContainer1.Name = "splitContainer1";
 			// 
 			// splitContainer1.Panel1
@@ -373,7 +373,7 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.TextBoxProfile);
-			this.splitContainer1.Size = new System.Drawing.Size(776, 322);
+			this.splitContainer1.Size = new System.Drawing.Size(778, 327);
 			this.splitContainer1.SplitterDistance = 170;
 			this.splitContainer1.SplitterWidth = 6;
 			this.splitContainer1.TabIndex = 12;
@@ -391,7 +391,7 @@
 			this.TreeViewProfiles.Name = "TreeViewProfiles";
 			this.TreeViewProfiles.SelectedImageIndex = 0;
 			this.TreeViewProfiles.ShowPlusMinus = false;
-			this.TreeViewProfiles.Size = new System.Drawing.Size(170, 322);
+			this.TreeViewProfiles.Size = new System.Drawing.Size(170, 327);
 			this.TreeViewProfiles.TabIndex = 0;
 			this.TreeViewProfiles.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewProfiles_AfterSelect);
 			this.TreeViewProfiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TreeViewProfiles_MouseDoubleClick);
@@ -408,7 +408,7 @@
 			this.TextBoxProfile.Multiline = true;
 			this.TextBoxProfile.Name = "TextBoxProfile";
 			this.TextBoxProfile.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.TextBoxProfile.Size = new System.Drawing.Size(600, 322);
+			this.TextBoxProfile.Size = new System.Drawing.Size(602, 327);
 			this.TextBoxProfile.TabIndex = 0;
 			this.TextBoxProfile.WordWrap = false;
 			this.TextBoxProfile.TextChanged += new System.EventHandler(this.TextBoxProfile_TextChanged);
