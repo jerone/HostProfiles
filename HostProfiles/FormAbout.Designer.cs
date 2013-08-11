@@ -37,7 +37,6 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.label6 = new System.Windows.Forms.Label();
 			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -69,9 +68,9 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(109, 36);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(109, 17);
+			this.label2.Size = new System.Drawing.Size(95, 17);
 			this.label2.TabIndex = 2;
-			this.label2.Text = "Version: 1.3.0";
+			this.label2.Text = "Version: 2.0";
 			// 
 			// label3
 			// 
@@ -105,9 +104,9 @@
 			this.label5.AutoSize = true;
 			this.label5.Location = new System.Drawing.Point(109, 108);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(160, 34);
+			this.label5.Size = new System.Drawing.Size(95, 17);
 			this.label5.TabIndex = 6;
-			this.label5.Text = "Souce code:\r\nTechnology support: ";
+			this.label5.Text = "Souce code:";
 			// 
 			// linkLabel1
 			// 
@@ -120,21 +119,10 @@
 			this.linkLabel1.Text = "http://hostprofiles.codeplex.com";
 			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_LinkClicked);
 			// 
-			// linkLabel2
-			// 
-			this.linkLabel2.AutoSize = true;
-			this.linkLabel2.Location = new System.Drawing.Point(263, 125);
-			this.linkLabel2.Name = "linkLabel2";
-			this.linkLabel2.Size = new System.Drawing.Size(191, 17);
-			this.linkLabel2.TabIndex = 8;
-			this.linkLabel2.TabStop = true;
-			this.linkLabel2.Text = "http://www.shootsoft.net";
-			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_LinkClicked);
-			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(109, 153);
+			this.label6.Location = new System.Drawing.Point(109, 133);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(95, 17);
 			this.label6.TabIndex = 9;
@@ -143,7 +131,7 @@
 			// linkLabel3
 			// 
 			this.linkLabel3.AutoSize = true;
-			this.linkLabel3.Location = new System.Drawing.Point(204, 153);
+			this.linkLabel3.Location = new System.Drawing.Point(204, 133);
 			this.linkLabel3.Name = "linkLabel3";
 			this.linkLabel3.Size = new System.Drawing.Size(263, 17);
 			this.linkLabel3.TabIndex = 10;
@@ -158,7 +146,6 @@
 			this.ClientSize = new System.Drawing.Size(601, 220);
 			this.Controls.Add(this.linkLabel3);
 			this.Controls.Add(this.label6);
-			this.Controls.Add(this.linkLabel2);
 			this.Controls.Add(this.linkLabel1);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
@@ -191,7 +178,6 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.LinkLabel linkLabel1;
-		private System.Windows.Forms.LinkLabel linkLabel2;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.LinkLabel linkLabel3;
 	}

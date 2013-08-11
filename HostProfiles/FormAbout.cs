@@ -18,10 +18,10 @@ namespace HostProfiles
 
 		private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			LinkLabel l = sender as LinkLabel;
-			if (l != null)
+			LinkLabel link = sender as LinkLabel;
+			if (link != null)
 			{
-				Process.Start(l.Text);
+				Process.Start(link.Text);
 			}
 		}
 	}
