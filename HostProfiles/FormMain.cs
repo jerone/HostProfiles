@@ -138,16 +138,6 @@ namespace HostProfiles
 
 		#endregion Main ToolStrip;
 
-		private void tabControlMain_SelectedIndexChanged(Object sender, EventArgs e)
-		{
-			switch (tabControlMain.SelectedIndex)
-			{
-				case 1:
-					TextBoxHost.Text = ReadHost();
-					break;
-			}
-		}
-
 		#region ListView;
 
 		private void ListViewProfiles_SelectedIndexChanged(Object sender, EventArgs e)
@@ -338,7 +328,6 @@ namespace HostProfiles
 		{
 			ListViewProfiles.Items.Clear();
 			switchProfilesToolStripMenuItem.DropDownItems.Clear();
-			TextBoxHost.Clear();
 
 			LoadRealProfile();
 
@@ -545,8 +534,6 @@ namespace HostProfiles
 				ListViewProfiles.Items.RemoveByKey(profile);
 
 				switchProfilesToolStripMenuItem.DropDownItems.RemoveByKey(profile);
-
-				TextBoxHost.Text = String.Empty;
 
 				if (ListViewProfiles.Items.Count > 0)
 				{

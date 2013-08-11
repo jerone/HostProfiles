@@ -63,31 +63,24 @@
 			this.aboutMainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.tabControlMain = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.profilesOffContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.profilesRealHostsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.newProfile2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.ListViewProfiles = new System.Windows.Forms.ListView();
 			this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.TextBoxProfile = new System.Windows.Forms.TextBox();
-			this.tabPageCurrent = new System.Windows.Forms.TabPage();
-			this.TextBoxHost = new System.Windows.Forms.TextBox();
-			this.profilesOffContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.profilesRealHostsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.newProfile2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.profilesContextMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.systrayContextMenuStrip.SuspendLayout();
 			this.mainMenuStrip.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
-			this.tabControlMain.SuspendLayout();
-			this.tabPage1.SuspendLayout();
+			this.profilesOffContextMenuStrip.SuspendLayout();
+			this.profilesRealHostsContextMenuStrip.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
-			this.tabPageCurrent.SuspendLayout();
-			this.profilesOffContextMenuStrip.SuspendLayout();
-			this.profilesRealHostsContextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// profilesContextMenuStrip
@@ -352,14 +345,15 @@
 			// 
 			this.tableLayoutPanel1.ColumnCount = 1;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 2);
 			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.tabControlMain, 0, 1);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 2;
+			this.tableLayoutPanel1.RowCount = 3;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 362);
 			this.tableLayoutPanel1.TabIndex = 10;
 			// 
@@ -378,35 +372,34 @@
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(778, 26);
 			this.tableLayoutPanel2.TabIndex = 11;
 			// 
-			// tabControlMain
+			// profilesOffContextMenuStrip
 			// 
-			this.tabControlMain.Controls.Add(this.tabPage1);
-			this.tabControlMain.Controls.Add(this.tabPageCurrent);
-			this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControlMain.Location = new System.Drawing.Point(4, 36);
-			this.tabControlMain.Margin = new System.Windows.Forms.Padding(4);
-			this.tabControlMain.Name = "tabControlMain";
-			this.tabControlMain.SelectedIndex = 0;
-			this.tabControlMain.Size = new System.Drawing.Size(776, 322);
-			this.tabControlMain.TabIndex = 1;
-			this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.tabControlMain_SelectedIndexChanged);
+			this.profilesOffContextMenuStrip.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.profilesOffContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newProfileToolStripMenuItem});
+			this.profilesOffContextMenuStrip.Name = "contextMenuStrip1";
+			this.profilesOffContextMenuStrip.Size = new System.Drawing.Size(168, 26);
 			// 
-			// tabPage1
+			// profilesRealHostsContextMenuStrip
 			// 
-			this.tabPage1.Controls.Add(this.splitContainer1);
-			this.tabPage1.Location = new System.Drawing.Point(4, 26);
-			this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-			this.tabPage1.Size = new System.Drawing.Size(768, 292);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Host Profiles";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.profilesRealHostsContextMenuStrip.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.profilesRealHostsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newProfile2ToolStripMenuItem});
+			this.profilesRealHostsContextMenuStrip.Name = "contextMenuStrip1";
+			this.profilesRealHostsContextMenuStrip.Size = new System.Drawing.Size(259, 26);
+			// 
+			// newProfile2ToolStripMenuItem
+			// 
+			this.newProfile2ToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Instance_5746;
+			this.newProfile2ToolStripMenuItem.Name = "newProfile2ToolStripMenuItem";
+			this.newProfile2ToolStripMenuItem.Size = new System.Drawing.Size(258, 22);
+			this.newProfile2ToolStripMenuItem.Text = "&Create Profile form here...";
+			this.newProfile2ToolStripMenuItem.Click += new System.EventHandler(this.newProfile2ToolStripMenuItem_Click);
 			// 
 			// splitContainer1
 			// 
 			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer1.Location = new System.Drawing.Point(4, 4);
+			this.splitContainer1.Location = new System.Drawing.Point(4, 36);
 			this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
 			this.splitContainer1.Name = "splitContainer1";
 			// 
@@ -417,10 +410,10 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.TextBoxProfile);
-			this.splitContainer1.Size = new System.Drawing.Size(760, 284);
-			this.splitContainer1.SplitterDistance = 178;
+			this.splitContainer1.Size = new System.Drawing.Size(776, 322);
+			this.splitContainer1.SplitterDistance = 181;
 			this.splitContainer1.SplitterWidth = 6;
-			this.splitContainer1.TabIndex = 1;
+			this.splitContainer1.TabIndex = 12;
 			// 
 			// ListViewProfiles
 			// 
@@ -435,7 +428,7 @@
 			this.ListViewProfiles.Margin = new System.Windows.Forms.Padding(4);
 			this.ListViewProfiles.MultiSelect = false;
 			this.ListViewProfiles.Name = "ListViewProfiles";
-			this.ListViewProfiles.Size = new System.Drawing.Size(178, 284);
+			this.ListViewProfiles.Size = new System.Drawing.Size(181, 322);
 			this.ListViewProfiles.SmallImageList = this.profilesImageList;
 			this.ListViewProfiles.TabIndex = 0;
 			this.ListViewProfiles.UseCompatibleStateImageBehavior = false;
@@ -460,59 +453,8 @@
 			this.TextBoxProfile.Multiline = true;
 			this.TextBoxProfile.Name = "TextBoxProfile";
 			this.TextBoxProfile.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.TextBoxProfile.Size = new System.Drawing.Size(576, 284);
+			this.TextBoxProfile.Size = new System.Drawing.Size(589, 322);
 			this.TextBoxProfile.TabIndex = 0;
-			this.TextBoxProfile.TextChanged += new System.EventHandler(this.TextBoxProfile_TextChanged);
-			// 
-			// tabPageCurrent
-			// 
-			this.tabPageCurrent.Controls.Add(this.TextBoxHost);
-			this.tabPageCurrent.Location = new System.Drawing.Point(4, 26);
-			this.tabPageCurrent.Margin = new System.Windows.Forms.Padding(4);
-			this.tabPageCurrent.Name = "tabPageCurrent";
-			this.tabPageCurrent.Padding = new System.Windows.Forms.Padding(4);
-			this.tabPageCurrent.Size = new System.Drawing.Size(768, 292);
-			this.tabPageCurrent.TabIndex = 1;
-			this.tabPageCurrent.Text = "View Current Host";
-			this.tabPageCurrent.UseVisualStyleBackColor = true;
-			// 
-			// TextBoxHost
-			// 
-			this.TextBoxHost.BackColor = System.Drawing.SystemColors.Window;
-			this.TextBoxHost.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.TextBoxHost.Font = new System.Drawing.Font("Lucida Console", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-			this.TextBoxHost.Location = new System.Drawing.Point(4, 4);
-			this.TextBoxHost.Margin = new System.Windows.Forms.Padding(4);
-			this.TextBoxHost.Multiline = true;
-			this.TextBoxHost.Name = "TextBoxHost";
-			this.TextBoxHost.ReadOnly = true;
-			this.TextBoxHost.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.TextBoxHost.Size = new System.Drawing.Size(760, 284);
-			this.TextBoxHost.TabIndex = 1;
-			// 
-			// profilesOffContextMenuStrip
-			// 
-			this.profilesOffContextMenuStrip.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.profilesOffContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newProfileToolStripMenuItem});
-			this.profilesOffContextMenuStrip.Name = "contextMenuStrip1";
-			this.profilesOffContextMenuStrip.Size = new System.Drawing.Size(168, 26);
-			// 
-			// profilesRealHostsContextMenuStrip
-			// 
-			this.profilesRealHostsContextMenuStrip.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.profilesRealHostsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newProfile2ToolStripMenuItem});
-			this.profilesRealHostsContextMenuStrip.Name = "contextMenuStrip1";
-			this.profilesRealHostsContextMenuStrip.Size = new System.Drawing.Size(259, 48);
-			// 
-			// newProfile2ToolStripMenuItem
-			// 
-			this.newProfile2ToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Instance_5746;
-			this.newProfile2ToolStripMenuItem.Name = "newProfile2ToolStripMenuItem";
-			this.newProfile2ToolStripMenuItem.Size = new System.Drawing.Size(258, 22);
-			this.newProfile2ToolStripMenuItem.Text = "&Create Profile form here...";
-			this.newProfile2ToolStripMenuItem.Click += new System.EventHandler(this.newProfile2ToolStripMenuItem_Click);
 			// 
 			// FormMain
 			// 
@@ -540,16 +482,12 @@
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
-			this.tabControlMain.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
+			this.profilesOffContextMenuStrip.ResumeLayout(false);
+			this.profilesRealHostsContextMenuStrip.ResumeLayout(false);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.Panel2.PerformLayout();
 			this.splitContainer1.ResumeLayout(false);
-			this.tabPageCurrent.ResumeLayout(false);
-			this.tabPageCurrent.PerformLayout();
-			this.profilesOffContextMenuStrip.ResumeLayout(false);
-			this.profilesRealHostsContextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -583,14 +521,6 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		private System.Windows.Forms.ToolStripMenuItem autoStartMainToolStripMenuItem;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-		private System.Windows.Forms.TabControl tabControlMain;
-		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.SplitContainer splitContainer1;
-		private System.Windows.Forms.ListView ListViewProfiles;
-		private System.Windows.Forms.ColumnHeader columnHeaderName;
-		private System.Windows.Forms.TextBox TextBoxProfile;
-		private System.Windows.Forms.TabPage tabPageCurrent;
-		private System.Windows.Forms.TextBox TextBoxHost;
 		private System.Windows.Forms.ToolStripMenuItem newProfileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
@@ -600,6 +530,10 @@
 		private System.Windows.Forms.ContextMenuStrip profilesOffContextMenuStrip;
 		private System.Windows.Forms.ContextMenuStrip profilesRealHostsContextMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem newProfile2ToolStripMenuItem;
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.ListView ListViewProfiles;
+		private System.Windows.Forms.ColumnHeader columnHeaderName;
+		private System.Windows.Forms.TextBox TextBoxProfile;
 	}
 }
 
