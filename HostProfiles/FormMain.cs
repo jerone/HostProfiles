@@ -196,6 +196,8 @@ namespace HostProfiles
 
 		#endregion TreeView;
 
+		#region TextBox;
+
 		private void TextBoxProfile_TextChanged(Object sender, EventArgs e)
 		{
 			if (TreeViewProfiles.SelectedNode == null) return;
@@ -204,17 +206,33 @@ namespace HostProfiles
 
 			if (selectedProfile.Name == RealHosts) return;
 
-			if (selectedProfile.Tag.ToString() != TextBoxProfile.Text)
+			String selectedProfileHosts = selectedProfile.Tag.ToString();
+
+			if (selectedProfileHosts != TextBoxProfile.Text)
 			{
-				if (selectedProfile.NodeFont == boldFont)
+				selectedProfile.Text = selectedProfile.Text.Replace(" *", "");
+
+				if (selectedProfile.NodeFont == boldFont && TextBoxProfile.Text != hosts)
 				{
-					selectedProfile.Text = selectedProfile.Text.Replace(" *", "") + " *";
+					selectedProfile.Text += " *";
 				}
 
 				selectedProfile.Tag = TextBoxProfile.Text;
-				File.WriteAllText(GetFullPath(selectedProfile.Name), selectedProfile.Tag.ToString());
+
+				File.WriteAllText(GetFullPath(selectedProfile.Name), selectedProfileHosts);
 			}
 		}
+
+		private void TextBoxProfile_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Control && (e.KeyCode == Keys.A))
+			{
+				TextBoxProfile.SelectAll();
+				e.Handled = true;
+			}
+		}
+
+		#endregion TextBox;
 
 		#region Systray Menu;
 

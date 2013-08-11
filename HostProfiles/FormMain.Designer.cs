@@ -412,6 +412,7 @@
 			this.TextBoxProfile.TabIndex = 0;
 			this.TextBoxProfile.WordWrap = false;
 			this.TextBoxProfile.TextChanged += new System.EventHandler(this.TextBoxProfile_TextChanged);
+			this.TextBoxProfile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxProfile_KeyDown);
 			// 
 			// tableLayoutPanel2
 			// 
