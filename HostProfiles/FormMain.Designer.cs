@@ -411,7 +411,7 @@
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.TextBoxProfile);
 			this.splitContainer1.Size = new System.Drawing.Size(776, 322);
-			this.splitContainer1.SplitterDistance = 181;
+			this.splitContainer1.SplitterDistance = 170;
 			this.splitContainer1.SplitterWidth = 6;
 			this.splitContainer1.TabIndex = 12;
 			// 
@@ -428,7 +428,7 @@
 			this.ListViewProfiles.Margin = new System.Windows.Forms.Padding(4);
 			this.ListViewProfiles.MultiSelect = false;
 			this.ListViewProfiles.Name = "ListViewProfiles";
-			this.ListViewProfiles.Size = new System.Drawing.Size(181, 322);
+			this.ListViewProfiles.Size = new System.Drawing.Size(170, 322);
 			this.ListViewProfiles.SmallImageList = this.profilesImageList;
 			this.ListViewProfiles.TabIndex = 0;
 			this.ListViewProfiles.UseCompatibleStateImageBehavior = false;
@@ -452,9 +452,10 @@
 			this.TextBoxProfile.Margin = new System.Windows.Forms.Padding(4);
 			this.TextBoxProfile.Multiline = true;
 			this.TextBoxProfile.Name = "TextBoxProfile";
-			this.TextBoxProfile.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.TextBoxProfile.Size = new System.Drawing.Size(589, 322);
+			this.TextBoxProfile.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+			this.TextBoxProfile.Size = new System.Drawing.Size(600, 322);
 			this.TextBoxProfile.TabIndex = 0;
+			this.TextBoxProfile.WordWrap = false;
 			// 
 			// FormMain
 			// 
