@@ -204,8 +204,16 @@ namespace HostProfiles
 
 			if (selectedProfile.Name == RealHosts) return;
 
-			selectedProfile.Tag = TextBoxProfile.Text;
-			File.WriteAllText(GetFullPath(selectedProfile.Name), selectedProfile.Tag.ToString());
+			if (selectedProfile.Tag.ToString() != TextBoxProfile.Text)
+			{
+				if (selectedProfile.NodeFont == boldFont)
+				{
+					selectedProfile.Text = selectedProfile.Text.Replace(" *", "") + " *";
+				}
+
+				selectedProfile.Tag = TextBoxProfile.Text;
+				File.WriteAllText(GetFullPath(selectedProfile.Name), selectedProfile.Tag.ToString());
+			}
 		}
 
 		#region Systray Menu;
@@ -456,6 +464,8 @@ namespace HostProfiles
 			TreeNode selectedProfile = TreeViewProfiles.Nodes[profile];
 
 			if (selectedProfile.Name == RealHosts) return;
+
+			selectedProfile.Text = selectedProfile.Text.Replace(" *", "");
 
 			foreach (TreeNode profileTreeNode in TreeViewProfiles.Nodes)
 			{
