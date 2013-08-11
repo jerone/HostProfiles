@@ -145,8 +145,10 @@
 			// 
 			this.profilesImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("profilesImageList.ImageStream")));
 			this.profilesImageList.TransparentColor = System.Drawing.Color.Transparent;
-			this.profilesImageList.Images.SetKeyName(0, "flag_16xSM.png");
+			this.profilesImageList.Images.SetKeyName(0, "flag_16xMD.png");
 			this.profilesImageList.Images.SetKeyName(1, "flag_16xLG.png");
+			this.profilesImageList.Images.SetKeyName(2, "FlagThread-Flagged,NotHot,NotSelected_10392_16x small.png");
+			this.profilesImageList.Images.SetKeyName(3, "FlagThread-Flagged,NotHot,NotSelected_10392_16x.png");
 			// 
 			// statusStrip1
 			// 

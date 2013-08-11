@@ -412,7 +412,7 @@ namespace HostProfiles
 			profileListViewItem.Tag = hosts;
 
 			profileListViewItem.Font = italicFont;
-			profileListViewItem.ImageIndex = 0;
+			profileListViewItem.ImageIndex = 2;
 
 			ListViewProfiles.Items.Add(profileListViewItem);
 		}
