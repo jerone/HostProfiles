@@ -62,25 +62,25 @@
 			this.helpMainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutMainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.TreeViewProfiles = new System.Windows.Forms.TreeView();
+			this.TextBoxProfile = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.profilesOffContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.profilesRealHostsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.newProfile2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.ListViewProfiles = new System.Windows.Forms.ListView();
 			this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.TextBoxProfile = new System.Windows.Forms.TextBox();
 			this.profilesContextMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.systrayContextMenuStrip.SuspendLayout();
 			this.mainMenuStrip.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
-			this.tableLayoutPanel2.SuspendLayout();
-			this.profilesOffContextMenuStrip.SuspendLayout();
-			this.profilesRealHostsContextMenuStrip.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
+			this.tableLayoutPanel2.SuspendLayout();
+			this.profilesOffContextMenuStrip.SuspendLayout();
+			this.profilesRealHostsContextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// profilesContextMenuStrip
@@ -359,6 +359,60 @@
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 362);
 			this.tableLayoutPanel1.TabIndex = 10;
 			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer1.Location = new System.Drawing.Point(4, 36);
+			this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.TreeViewProfiles);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.TextBoxProfile);
+			this.splitContainer1.Size = new System.Drawing.Size(776, 322);
+			this.splitContainer1.SplitterDistance = 170;
+			this.splitContainer1.SplitterWidth = 6;
+			this.splitContainer1.TabIndex = 12;
+			// 
+			// TreeViewProfiles
+			// 
+			this.TreeViewProfiles.ContextMenuStrip = this.profilesContextMenuStrip;
+			this.TreeViewProfiles.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.TreeViewProfiles.FullRowSelect = true;
+			this.TreeViewProfiles.HideSelection = false;
+			this.TreeViewProfiles.ImageIndex = 0;
+			this.TreeViewProfiles.ImageList = this.profilesImageList;
+			this.TreeViewProfiles.Location = new System.Drawing.Point(0, 0);
+			this.TreeViewProfiles.Margin = new System.Windows.Forms.Padding(4);
+			this.TreeViewProfiles.Name = "TreeViewProfiles";
+			this.TreeViewProfiles.SelectedImageIndex = 0;
+			this.TreeViewProfiles.ShowPlusMinus = false;
+			this.TreeViewProfiles.Size = new System.Drawing.Size(170, 322);
+			this.TreeViewProfiles.TabIndex = 0;
+			this.TreeViewProfiles.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewProfiles_AfterSelect);
+			this.TreeViewProfiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TreeViewProfiles_MouseDoubleClick);
+			this.TreeViewProfiles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TreeViewProfiles_MouseDown);
+			// 
+			// TextBoxProfile
+			// 
+			this.TextBoxProfile.AcceptsReturn = true;
+			this.TextBoxProfile.AcceptsTab = true;
+			this.TextBoxProfile.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.TextBoxProfile.Font = new System.Drawing.Font("Lucida Console", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.TextBoxProfile.Location = new System.Drawing.Point(0, 0);
+			this.TextBoxProfile.Margin = new System.Windows.Forms.Padding(4);
+			this.TextBoxProfile.Multiline = true;
+			this.TextBoxProfile.Name = "TextBoxProfile";
+			this.TextBoxProfile.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+			this.TextBoxProfile.Size = new System.Drawing.Size(600, 322);
+			this.TextBoxProfile.TabIndex = 0;
+			this.TextBoxProfile.WordWrap = false;
+			this.TextBoxProfile.TextChanged += new System.EventHandler(this.TextBoxProfile_TextChanged);
+			// 
 			// tableLayoutPanel2
 			// 
 			this.tableLayoutPanel2.ColumnCount = 2;
@@ -398,67 +452,6 @@
 			this.newProfile2ToolStripMenuItem.Text = "&Create Profile form here...";
 			this.newProfile2ToolStripMenuItem.Click += new System.EventHandler(this.newProfile2ToolStripMenuItem_Click);
 			// 
-			// splitContainer1
-			// 
-			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer1.Location = new System.Drawing.Point(4, 36);
-			this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
-			this.splitContainer1.Name = "splitContainer1";
-			// 
-			// splitContainer1.Panel1
-			// 
-			this.splitContainer1.Panel1.Controls.Add(this.ListViewProfiles);
-			// 
-			// splitContainer1.Panel2
-			// 
-			this.splitContainer1.Panel2.Controls.Add(this.TextBoxProfile);
-			this.splitContainer1.Size = new System.Drawing.Size(776, 322);
-			this.splitContainer1.SplitterDistance = 170;
-			this.splitContainer1.SplitterWidth = 6;
-			this.splitContainer1.TabIndex = 12;
-			// 
-			// ListViewProfiles
-			// 
-			this.ListViewProfiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderName});
-			this.ListViewProfiles.ContextMenuStrip = this.profilesContextMenuStrip;
-			this.ListViewProfiles.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ListViewProfiles.FullRowSelect = true;
-			this.ListViewProfiles.GridLines = true;
-			this.ListViewProfiles.HideSelection = false;
-			this.ListViewProfiles.Location = new System.Drawing.Point(0, 0);
-			this.ListViewProfiles.Margin = new System.Windows.Forms.Padding(4);
-			this.ListViewProfiles.MultiSelect = false;
-			this.ListViewProfiles.Name = "ListViewProfiles";
-			this.ListViewProfiles.Size = new System.Drawing.Size(170, 322);
-			this.ListViewProfiles.SmallImageList = this.profilesImageList;
-			this.ListViewProfiles.TabIndex = 0;
-			this.ListViewProfiles.UseCompatibleStateImageBehavior = false;
-			this.ListViewProfiles.View = System.Windows.Forms.View.Details;
-			this.ListViewProfiles.SelectedIndexChanged += new System.EventHandler(this.ListViewProfiles_SelectedIndexChanged);
-			this.ListViewProfiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListViewProfiles_MouseDoubleClick);
-			this.ListViewProfiles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListViewProfiles_MouseDown);
-			// 
-			// columnHeaderName
-			// 
-			this.columnHeaderName.Text = "Name";
-			this.columnHeaderName.Width = 150;
-			// 
-			// TextBoxProfile
-			// 
-			this.TextBoxProfile.AcceptsReturn = true;
-			this.TextBoxProfile.AcceptsTab = true;
-			this.TextBoxProfile.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.TextBoxProfile.Font = new System.Drawing.Font("Lucida Console", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-			this.TextBoxProfile.Location = new System.Drawing.Point(0, 0);
-			this.TextBoxProfile.Margin = new System.Windows.Forms.Padding(4);
-			this.TextBoxProfile.Multiline = true;
-			this.TextBoxProfile.Name = "TextBoxProfile";
-			this.TextBoxProfile.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.TextBoxProfile.Size = new System.Drawing.Size(600, 322);
-			this.TextBoxProfile.TabIndex = 0;
-			this.TextBoxProfile.WordWrap = false;
-			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -483,14 +476,14 @@
 			this.mainMenuStrip.ResumeLayout(false);
 			this.mainMenuStrip.PerformLayout();
 			this.tableLayoutPanel1.ResumeLayout(false);
-			this.tableLayoutPanel2.ResumeLayout(false);
-			this.tableLayoutPanel2.PerformLayout();
-			this.profilesOffContextMenuStrip.ResumeLayout(false);
-			this.profilesRealHostsContextMenuStrip.ResumeLayout(false);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.Panel2.PerformLayout();
 			this.splitContainer1.ResumeLayout(false);
+			this.tableLayoutPanel2.ResumeLayout(false);
+			this.tableLayoutPanel2.PerformLayout();
+			this.profilesOffContextMenuStrip.ResumeLayout(false);
+			this.profilesRealHostsContextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -534,7 +527,7 @@
 		private System.Windows.Forms.ContextMenuStrip profilesRealHostsContextMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem newProfile2ToolStripMenuItem;
 		private System.Windows.Forms.SplitContainer splitContainer1;
-		private System.Windows.Forms.ListView ListViewProfiles;
+		private System.Windows.Forms.TreeView TreeViewProfiles;
 		private System.Windows.Forms.ColumnHeader columnHeaderName;
 		private System.Windows.Forms.TextBox TextBoxProfile;
 	}

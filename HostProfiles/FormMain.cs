@@ -138,13 +138,13 @@ namespace HostProfiles
 
 		#endregion Main ToolStrip;
 
-		#region ListView;
+		#region TreeView;
 
-		private void ListViewProfiles_SelectedIndexChanged(Object sender, EventArgs e)
+		private void TreeViewProfiles_AfterSelect(Object sender, TreeViewEventArgs e)
 		{
-			if (ListViewProfiles.SelectedItems.Count == 0) return;
+			if (TreeViewProfiles.SelectedNode == null) return;
 
-			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
+			String selectedProfile = TreeViewProfiles.SelectedNode.Name;
 
 			if (selectedProfile == RealHosts)
 			{
@@ -154,52 +154,53 @@ namespace HostProfiles
 			}
 			else
 			{
-				TextBoxProfile.Text = ListViewProfiles.SelectedItems[0].Tag.ToString();
+				TextBoxProfile.Text = TreeViewProfiles.SelectedNode.Tag.ToString();
 				TextBoxProfile.ReadOnly = false;
 			}
 		}
 
-		private void ListViewProfiles_MouseDoubleClick(Object sender, MouseEventArgs e)
+		private void TreeViewProfiles_MouseDoubleClick(Object sender, MouseEventArgs e)
 		{
-			if (ListViewProfiles.SelectedItems.Count == 0) return;
+			if (TreeViewProfiles.SelectedNode == null) return;
 
-			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
+			String selectedProfile = TreeViewProfiles.SelectedNode.Name;
 
 			if (selectedProfile == RealHosts) return;
 
 			ApplyProfile(selectedProfile);
 		}
 
-		private void ListViewProfiles_MouseDown(Object sender, MouseEventArgs e)
+		private void TreeViewProfiles_MouseDown(Object sender, MouseEventArgs e)
 		{
 			if (e.Button == MouseButtons.Right)
 			{
-				var hitTest = ListViewProfiles.HitTest(e.Location);
-				if (hitTest != null && hitTest.Item != null)
+				var hitTest = TreeViewProfiles.HitTest(e.Location);
+				if (hitTest != null && hitTest.Node != null)
 				{
-					if (hitTest.Item.Name == RealHosts)
+					if (hitTest.Node.Name == RealHosts)
 					{
-						ListViewProfiles.ContextMenuStrip = profilesRealHostsContextMenuStrip;
+						TreeViewProfiles.ContextMenuStrip = profilesRealHostsContextMenuStrip;
 					}
 					else
 					{
-						ListViewProfiles.ContextMenuStrip = profilesContextMenuStrip;
+						TreeViewProfiles.ContextMenuStrip = profilesContextMenuStrip;
 					}
+					TreeViewProfiles.SelectedNode = hitTest.Node;
 				}
 				else
 				{
-					ListViewProfiles.ContextMenuStrip = profilesOffContextMenuStrip;
+					TreeViewProfiles.ContextMenuStrip = profilesOffContextMenuStrip;
 				}
 			}
 		}
 
-		#endregion ListView;
+		#endregion TreeView;
 
 		private void TextBoxProfile_TextChanged(Object sender, EventArgs e)
 		{
-			if (ListViewProfiles.SelectedItems.Count == 0) return;
+			if (TreeViewProfiles.SelectedNode == null) return;
 
-			ListViewItem selectedProfile = ListViewProfiles.SelectedItems[0];
+			TreeNode selectedProfile = TreeViewProfiles.SelectedNode;
 
 			if (selectedProfile.Name == RealHosts) return;
 
@@ -238,7 +239,7 @@ namespace HostProfiles
 		{
 			ToolStripMenuItem menu = sender as ToolStripMenuItem;
 
-			ListViewProfiles.Items[menu.Name].Selected = true;
+			TreeViewProfiles.SelectedNode = TreeViewProfiles.Nodes[menu.Name];
 
 			ApplyProfile(menu.Name);
 		}
@@ -258,9 +259,9 @@ namespace HostProfiles
 
 		private void newProfile2ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (ListViewProfiles.SelectedItems.Count == 0) return;
+			if (TreeViewProfiles.SelectedNode == null) return;
 
-			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
+			String selectedProfile = TreeViewProfiles.SelectedNode.Name;
 
 			if (selectedProfile != RealHosts) return;
 
@@ -274,27 +275,27 @@ namespace HostProfiles
 
 		private void applyToolStripMenuItem_Click(Object sender, EventArgs e)
 		{
-			if (ListViewProfiles.SelectedItems.Count == 0) return;
+			if (TreeViewProfiles.SelectedNode == null) return;
 
-			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
+			String selectedProfile = TreeViewProfiles.SelectedNode.Name;
 
 			ApplyProfile(selectedProfile);
 		}
 
 		private void duplicateToolStripMenuItem_Click(Object sender, EventArgs e)
 		{
-			if (ListViewProfiles.SelectedItems.Count == 0) return;
+			if (TreeViewProfiles.SelectedNode == null) return;
 
-			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
+			String selectedProfile = TreeViewProfiles.SelectedNode.Name;
 
 			DuplicateProfile(selectedProfile);
 		}
 
 		private void renameToolStripMenuItem1_Click(Object sender, EventArgs e)
 		{
-			if (ListViewProfiles.SelectedItems.Count == 0) return;
+			if (TreeViewProfiles.SelectedNode == null) return;
 
-			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
+			String selectedProfile = TreeViewProfiles.SelectedNode.Name;
 
 			String profileNewName = selectedProfile;
 			if (ShowInputDialog(Resources.EditProfile_Title, ref profileNewName) == DialogResult.OK)
@@ -305,9 +306,9 @@ namespace HostProfiles
 
 		private void removeToolStripMenuItem_Click(Object sender, EventArgs e)
 		{
-			if (ListViewProfiles.SelectedItems.Count == 0) return;
+			if (TreeViewProfiles.SelectedNode == null) return;
 
-			String selectedProfile = ListViewProfiles.SelectedItems[0].Name;
+			String selectedProfile = TreeViewProfiles.SelectedNode.Name;
 
 			if (MessageBox.Show(String.Format(Resources.DeleteProfile, selectedProfile), Resources.DeletePofile_Title, MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
@@ -326,7 +327,7 @@ namespace HostProfiles
 
 		private void LoadProfiles()
 		{
-			ListViewProfiles.Items.Clear();
+			TreeViewProfiles.Nodes.Clear();
 			switchProfilesToolStripMenuItem.DropDownItems.Clear();
 
 			LoadRealProfile();
@@ -355,7 +356,7 @@ namespace HostProfiles
 
 		private void LoadProfile(String file, Boolean clean = false)
 		{
-			// ListViewItem:
+			// TreeNode:
 			//	Text = file name
 			//	Name = file name
 			//	Tag = hosts
@@ -370,10 +371,10 @@ namespace HostProfiles
 
 			Boolean hostProfileFound = !clean && profileHosts == hosts;
 
-			ListViewItem profileListViewItem = new ListViewItem();
-			profileListViewItem.Name = profileName;
-			profileListViewItem.Text = profileName;
-			profileListViewItem.Tag = profileHosts;
+			TreeNode profileTreeNode = new TreeNode();
+			profileTreeNode.Name = profileName;
+			profileTreeNode.Text = profileName;
+			profileTreeNode.Tag = profileHosts;
 
 			ToolStripMenuItem profileToolStripItem = new ToolStripMenuItem();
 			profileToolStripItem.Name = profileName;
@@ -382,8 +383,8 @@ namespace HostProfiles
 
 			if (hostProfileFound)
 			{
-				profileListViewItem.Font = boldFont;
-				profileListViewItem.ImageIndex = 1;
+				profileTreeNode.NodeFont = boldFont;
+				profileTreeNode.ImageIndex = profileTreeNode.SelectedImageIndex = 1;
 				profileToolStripItem.Font = boldFont;
 				profileToolStripItem.Image = profilesImageList.Images[1];
 
@@ -391,13 +392,13 @@ namespace HostProfiles
 			}
 			else
 			{
-				profileListViewItem.Font = baseFont;
-				profileListViewItem.ImageIndex = 0;
+				profileTreeNode.NodeFont = baseFont;
+				profileTreeNode.ImageIndex = profileTreeNode.SelectedImageIndex = 0;
 				profileToolStripItem.Font = baseFont;
 				profileToolStripItem.Image = profilesImageList.Images[0];
 			}
 
-			ListViewProfiles.Items.Add(profileListViewItem);
+			TreeViewProfiles.Nodes.Add(profileTreeNode);
 
 			switchProfilesToolStripMenuItem.DropDownItems.Add(profileToolStripItem);
 		}
@@ -406,15 +407,15 @@ namespace HostProfiles
 		{
 			hosts = ReadHost();
 
-			ListViewItem profileListViewItem = new ListViewItem();
-			profileListViewItem.Name = RealHosts;
-			profileListViewItem.Text = RealHosts;
-			profileListViewItem.Tag = hosts;
+			TreeNode profileTreeNode = new TreeNode();
+			profileTreeNode.Name = RealHosts;
+			profileTreeNode.Text = RealHosts;
+			profileTreeNode.Tag = hosts;
 
-			profileListViewItem.Font = italicFont;
-			profileListViewItem.ImageIndex = 2;
+			profileTreeNode.NodeFont = italicFont;
+			profileTreeNode.ImageIndex = profileTreeNode.SelectedImageIndex = 2;
 
-			ListViewProfiles.Items.Add(profileListViewItem);
+			TreeViewProfiles.Nodes.Add(profileTreeNode);
 		}
 
 		private void AddProfile(String profile, String hosts = "")
@@ -441,7 +442,7 @@ namespace HostProfiles
 
 					LoadProfile(file, true);
 
-					ListViewProfiles.Items[profile].Selected = true;
+					TreeViewProfiles.SelectedNode = TreeViewProfiles.Nodes[profile];
 				}
 			}
 			catch (Exception ex)
@@ -452,26 +453,26 @@ namespace HostProfiles
 
 		private void ApplyProfile(String profile)
 		{
-			ListViewItem selectedProfile = ListViewProfiles.Items[profile];
+			TreeNode selectedProfile = TreeViewProfiles.Nodes[profile];
 
 			if (selectedProfile.Name == RealHosts) return;
 
-			foreach (ListViewItem profileListViewItem in ListViewProfiles.Items)
+			foreach (TreeNode profileTreeNode in TreeViewProfiles.Nodes)
 			{
-				if (profileListViewItem.Name == RealHosts) continue;
+				if (profileTreeNode.Name == RealHosts) continue;
 
-				ToolStripItem profileToolStripItem = switchProfilesToolStripMenuItem.DropDownItems[profileListViewItem.Name];
-				if (profileListViewItem == selectedProfile)
+				ToolStripItem profileToolStripItem = switchProfilesToolStripMenuItem.DropDownItems[profileTreeNode.Name];
+				if (profileTreeNode == selectedProfile)
 				{
-					profileListViewItem.Font = boldFont;
-					profileListViewItem.ImageIndex = 1;
+					profileTreeNode.NodeFont = boldFont;
+					profileTreeNode.ImageIndex = profileTreeNode.SelectedImageIndex = 1;
 					profileToolStripItem.Font = boldFont;
 					profileToolStripItem.Image = profilesImageList.Images[1];
 				}
 				else
 				{
-					profileListViewItem.Font = baseFont;
-					profileListViewItem.ImageIndex = 0;
+					profileTreeNode.NodeFont = baseFont;
+					profileTreeNode.ImageIndex = profileTreeNode.SelectedImageIndex = 0;
 					profileToolStripItem.Font = baseFont;
 					profileToolStripItem.Image = profilesImageList.Images[0];
 				}
@@ -508,10 +509,10 @@ namespace HostProfiles
 						File.Move(fileOld, fileNew);
 						File.Delete(fileOld);
 
-						ListViewItem profileListViewItem = ListViewProfiles.Items[profileOld];
-						profileListViewItem.Text = profileNew;
-						profileListViewItem.Name = profileNew;
-						profileListViewItem.Selected = true;
+						TreeNode profileTreeNode = TreeViewProfiles.Nodes[profileOld];
+						profileTreeNode.Text = profileNew;
+						profileTreeNode.Name = profileNew;
+						TreeViewProfiles.SelectedNode = profileTreeNode;
 
 						ToolStripItem profileToolStripItem = switchProfilesToolStripMenuItem.DropDownItems[profileOld];
 						profileToolStripItem.Text = profileNew;
@@ -531,13 +532,13 @@ namespace HostProfiles
 			{
 				File.Delete(GetFullPath(profile));
 
-				ListViewProfiles.Items.RemoveByKey(profile);
+				TreeViewProfiles.Nodes.RemoveByKey(profile);
 
 				switchProfilesToolStripMenuItem.DropDownItems.RemoveByKey(profile);
 
-				if (ListViewProfiles.Items.Count > 0)
+				if (TreeViewProfiles.Nodes.Count > 0)
 				{
-					ListViewProfiles.Items[ListViewProfiles.Items.Count - 1].Selected = true;
+					TreeViewProfiles.SelectedNode = TreeViewProfiles.Nodes[TreeViewProfiles.Nodes.Count - 1];
 				}
 				else
 				{
@@ -576,7 +577,7 @@ namespace HostProfiles
 
 					LoadProfile(fileNew, true);
 
-					ListViewProfiles.Items[profileNew].Selected = true;
+					TreeViewProfiles.SelectedNode = TreeViewProfiles.Nodes[profileNew];
 				}
 			}
 			catch (Exception ex)
