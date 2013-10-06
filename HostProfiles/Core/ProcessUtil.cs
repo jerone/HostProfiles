@@ -1,34 +1,27 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace HostProfiles
 {
 	public class ProcessUtil
 	{
-		public static string Execute(string process, string arges)
+		public static String Execute(String process, String args)
 		{
-			string str = string.Empty;
-			using (System.Diagnostics.Process p = new System.Diagnostics.Process())
+			String rtrn = String.Empty;
+			using (Process p = new Process())
 			{
-				p.StartInfo = new System.Diagnostics.ProcessStartInfo();
+				p.StartInfo = new ProcessStartInfo();
 				p.StartInfo.FileName = process;
-				p.StartInfo.Arguments = arges;
-				p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+				p.StartInfo.Arguments = args;
+				p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 				p.StartInfo.RedirectStandardOutput = true;
 				p.StartInfo.UseShellExecute = false;
-				p.StartInfo.CreateNoWindow = true;//让窗体不显示
+				//p.StartInfo.CreateNoWindow = true;
 				p.Start();
-				StreamReader reader = p.StandardOutput;//截取输出流
-
-				str = reader.ReadToEnd();//获得的结果
-
-				//StreamWriter writer = p.StandardInput;
-				//writer.Write("asdf");
-				//writer.Write(Environment.NewLine);  				
-				//Console.WriteLine(p.StandardError.ReadToEnd());
+				rtrn = p.StandardOutput.ReadToEnd();
 			}
-			return str;
+			return rtrn;
 		}
-
-
 	}
 }
