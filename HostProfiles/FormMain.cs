@@ -35,6 +35,7 @@ namespace HostProfiles
 			this.Disposed += FormMain_Disposed;
 
 			basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + Path.DirectorySeparatorChar, "Profiles" + Path.DirectorySeparatorChar);
+
 			baseFont = this.Font;
 			boldFont = new Font(baseFont, FontStyle.Bold);
 			italicFont = new Font(baseFont, FontStyle.Italic);
@@ -232,7 +233,7 @@ namespace HostProfiles
 			}
 		}
 
-		private void TextBoxProfile_KeyDown(object sender, KeyEventArgs e)
+		private void TextBoxProfile_KeyDown(Object sender, KeyEventArgs e)
 		{
 			if (e.Control && (e.KeyCode == Keys.A))
 			{
@@ -292,7 +293,7 @@ namespace HostProfiles
 			}
 		}
 
-		private void newProfile2ToolStripMenuItem_Click(object sender, EventArgs e)
+		private void newProfile2ToolStripMenuItem_Click(Object sender, EventArgs e)
 		{
 			if (TreeViewProfiles.SelectedNode == null) return;
 
