@@ -204,4 +204,7 @@ Do you want to load your current hosts file?</value>
   <data name="Instance_5746" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\instance_5746.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Save_6530" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\save_6530.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

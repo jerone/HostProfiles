@@ -93,27 +93,27 @@
             this.renameToolStripMenuItem,
             this.deleteToolStripMenuItem});
 			this.profilesContextMenuStrip.Name = "contextMenuStrip1";
-			this.profilesContextMenuStrip.Size = new System.Drawing.Size(221, 98);
+			this.profilesContextMenuStrip.Size = new System.Drawing.Size(153, 120);
 			// 
 			// applyToolStripMenuItem
 			// 
 			this.applyToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.applyToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Event_594_exp;
+			this.applyToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Save_6530;
 			this.applyToolStripMenuItem.Name = "applyToolStripMenuItem";
-			this.applyToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-			this.applyToolStripMenuItem.Text = "&Apply && Flush DNS";
+			this.applyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.applyToolStripMenuItem.Text = "&Save";
 			this.applyToolStripMenuItem.Click += new System.EventHandler(this.applyToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(217, 6);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
 			// 
 			// duplicateToolStripMenuItem
 			// 
 			this.duplicateToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Instance_5746;
 			this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
-			this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+			this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.duplicateToolStripMenuItem.Text = "D&uplicate";
 			this.duplicateToolStripMenuItem.Click += new System.EventHandler(this.duplicateToolStripMenuItem_Click);
 			// 
@@ -121,7 +121,7 @@
 			// 
 			this.renameToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Rename_6779_32;
 			this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-			this.renameToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+			this.renameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.renameToolStripMenuItem.Text = "&Rename";
 			this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem1_Click);
 			// 
@@ -129,7 +129,7 @@
 			// 
 			this.deleteToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.File_exclude_5820;
 			this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.deleteToolStripMenuItem.Text = "&Delete";
 			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
 			// 
