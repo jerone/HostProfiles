@@ -48,13 +48,6 @@ namespace HostProfiles
 #endif
 		}
 
-		void FormMain_Disposed(Object sender, EventArgs e)
-		{
-			baseFont.Dispose();
-			boldFont.Dispose();
-			italicFont.Dispose();
-		}
-
 		#region Form;
 
 		private void FormMain_Load(Object sender, EventArgs e)
@@ -91,6 +84,13 @@ namespace HostProfiles
 			{
 				Properties.Settings.Default.Save();
 			}
+		}
+
+		private void FormMain_Disposed(Object sender, EventArgs e)
+		{
+			baseFont.Dispose();
+			boldFont.Dispose();
+			italicFont.Dispose();
 		}
 
 		#endregion Form;
