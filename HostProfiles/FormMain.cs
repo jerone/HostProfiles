@@ -32,6 +32,8 @@ namespace HostProfiles
 		{
 			InitializeComponent();
 
+			this.Disposed += FormMain_Disposed;
+
 			basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + Path.DirectorySeparatorChar, "Profiles" + Path.DirectorySeparatorChar);
 			baseFont = this.Font;
 			boldFont = new Font(baseFont, FontStyle.Bold);
@@ -44,6 +46,13 @@ namespace HostProfiles
 #if LINUX
 			autoStartMainToolStripMenuItem.Enabled = false;
 #endif
+		}
+
+		void FormMain_Disposed(Object sender, EventArgs e)
+		{
+			baseFont.Dispose();
+			boldFont.Dispose();
+			italicFont.Dispose();
 		}
 
 		#region Form;
