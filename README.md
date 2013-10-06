@@ -7,7 +7,7 @@ Host Profiles is a host file management tool. Quickly switch host profiles and f
 Clone
 ----------
 
-This version is a clone taken from http://hostprofiles.codeplex.com which fixes some issues and has new features.
+This is a clone taken from http://hostprofiles.codeplex.com which fixes some issues and adds new features.
 
 
 Download
