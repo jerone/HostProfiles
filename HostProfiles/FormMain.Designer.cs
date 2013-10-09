@@ -39,7 +39,6 @@
 			this.newProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.profilesImageList = new System.Windows.Forms.ImageList(this.components);
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-			this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
 			this.NotifyIconProfiles = new System.Windows.Forms.NotifyIcon(this.components);
 			this.systrayContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +70,6 @@
 			this.newProfile2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.profilesContextMenuStrip.SuspendLayout();
-			this.statusStrip1.SuspendLayout();
 			this.systrayContextMenuStrip.SuspendLayout();
 			this.mainMenuStrip.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
@@ -93,27 +91,27 @@
             this.renameToolStripMenuItem,
             this.deleteToolStripMenuItem});
 			this.profilesContextMenuStrip.Name = "contextMenuStrip1";
-			this.profilesContextMenuStrip.Size = new System.Drawing.Size(153, 120);
+			this.profilesContextMenuStrip.Size = new System.Drawing.Size(141, 98);
 			// 
 			// applyToolStripMenuItem
 			// 
 			this.applyToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.applyToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Save_6530;
 			this.applyToolStripMenuItem.Name = "applyToolStripMenuItem";
-			this.applyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.applyToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
 			this.applyToolStripMenuItem.Text = "&Save";
 			this.applyToolStripMenuItem.Click += new System.EventHandler(this.applyToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(137, 6);
 			// 
 			// duplicateToolStripMenuItem
 			// 
 			this.duplicateToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Instance_5746;
 			this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
-			this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
 			this.duplicateToolStripMenuItem.Text = "D&uplicate";
 			this.duplicateToolStripMenuItem.Click += new System.EventHandler(this.duplicateToolStripMenuItem_Click);
 			// 
@@ -121,7 +119,7 @@
 			// 
 			this.renameToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Rename_6779_32;
 			this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-			this.renameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.renameToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
 			this.renameToolStripMenuItem.Text = "&Rename";
 			this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem1_Click);
 			// 
@@ -129,7 +127,7 @@
 			// 
 			this.deleteToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.File_exclude_5820;
 			this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
 			this.deleteToolStripMenuItem.Text = "&Delete";
 			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
 			// 
@@ -155,21 +153,12 @@
 			this.statusStrip1.BackColor = System.Drawing.SystemColors.Control;
 			this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.statusStrip1.GripMargin = new System.Windows.Forms.Padding(0);
-			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ProgressBar});
-			this.statusStrip1.Location = new System.Drawing.Point(660, 0);
+			this.statusStrip1.Location = new System.Drawing.Point(730, 0);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(118, 26);
+			this.statusStrip1.Size = new System.Drawing.Size(48, 26);
 			this.statusStrip1.SizingGrip = false;
 			this.statusStrip1.TabIndex = 8;
 			this.statusStrip1.Text = "statusStrip1";
-			// 
-			// ProgressBar
-			// 
-			this.ProgressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-			this.ProgressBar.Margin = new System.Windows.Forms.Padding(1, 3, 0, 3);
-			this.ProgressBar.Name = "ProgressBar";
-			this.ProgressBar.Size = new System.Drawing.Size(100, 20);
 			// 
 			// NotifyIconProfiles
 			// 
@@ -245,7 +234,7 @@
 			this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
 			this.mainMenuStrip.Name = "mainMenuStrip";
 			this.mainMenuStrip.Padding = new System.Windows.Forms.Padding(0);
-			this.mainMenuStrip.Size = new System.Drawing.Size(660, 26);
+			this.mainMenuStrip.Size = new System.Drawing.Size(730, 26);
 			this.mainMenuStrip.TabIndex = 9;
 			this.mainMenuStrip.Text = "mainMenuStrip";
 			// 
@@ -471,8 +460,6 @@
 			this.Load += new System.EventHandler(this.FormMain_Load);
 			this.Shown += new System.EventHandler(this.FormMain_Shown);
 			this.profilesContextMenuStrip.ResumeLayout(false);
-			this.statusStrip1.ResumeLayout(false);
-			this.statusStrip1.PerformLayout();
 			this.systrayContextMenuStrip.ResumeLayout(false);
 			this.mainMenuStrip.ResumeLayout(false);
 			this.mainMenuStrip.PerformLayout();
@@ -495,7 +482,6 @@
 		private System.Windows.Forms.ToolStripMenuItem applyToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 		private System.Windows.Forms.StatusStrip statusStrip1;
-		private System.Windows.Forms.ToolStripProgressBar ProgressBar;
 		private System.Windows.Forms.NotifyIcon NotifyIconProfiles;
 		private System.Windows.Forms.ContextMenuStrip systrayContextMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;

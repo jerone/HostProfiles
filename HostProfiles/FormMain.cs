@@ -21,8 +21,8 @@ namespace HostProfiles
 
 		String RealHosts = "Current Hosts";
 
-		private const String path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";  // HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
-		private const String programName = "HostProfiles";
+		const String _RegistryPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";  // HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+		const String _ProgramName = "HostProfiles";
 
 		private String hosts = ReadHost();
 
@@ -60,8 +60,8 @@ namespace HostProfiles
 
 			LoadProfiles();
 
-			RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
-			autoStartMainToolStripMenuItem.Checked = key.GetValue(programName) != null;
+			RegistryKey key = Registry.CurrentUser.OpenSubKey(_RegistryPath, true);
+			autoStartMainToolStripMenuItem.Checked = key.GetValue(_ProgramName) != null;
 
 			minimizeAtStartupToolStripMenuItem.Checked = Settings.Default.minimizeAtStatup;
 		}
@@ -114,14 +114,14 @@ namespace HostProfiles
 
 		private void autoStartMainToolStripMenuItem_Click(Object sender, EventArgs e)
 		{
-			RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
+			RegistryKey key = Registry.CurrentUser.OpenSubKey(_RegistryPath, true);
 			if (!autoStartMainToolStripMenuItem.Checked)
 			{
-				key.SetValue(programName, "\"" + Application.ExecutablePath.ToString() + "\"");
+				key.SetValue(_ProgramName, "\"" + Application.ExecutablePath.ToString() + "\"");
 			}
 			else
 			{
-				key.DeleteValue(programName, false);
+				key.DeleteValue(_ProgramName, false);
 			}
 			autoStartMainToolStripMenuItem.Checked = !autoStartMainToolStripMenuItem.Checked;
 		}
@@ -138,7 +138,7 @@ namespace HostProfiles
 
 		private void iisresetToolStripMenuItem_Click(Object sender, EventArgs e)
 		{
-			ProcessUtil.Execute(Globals.IISReset, Globals.IISResetArgs);
+			ProcessUtil.Execute(Globals.IISReset, Globals.IISResetArgs, "IISReset");
 		}
 
 		private void aboutMainToolStripMenuItem_Click(Object sender, EventArgs e)
@@ -654,15 +654,7 @@ namespace HostProfiles
 
 		private void ExecuteFlush()
 		{
-			ProgressBar.Value = 0;
-
-			String path = Globals.Flush;
-			if (File.Exists(path))
-			{
-				ProcessUtil.Execute(path, Globals.FlushArgs);
-			}
-
-			ProgressBar.Value = 100;
+			ProcessUtil.Execute(Globals.Flush, Globals.FlushArgs, "Flush DNS");
 		}
 
 		private void ShowAbout()
