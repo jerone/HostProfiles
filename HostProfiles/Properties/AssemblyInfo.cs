@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("HostProfiles")]
-[assembly: AssemblyDescription("http://www.shootsoft.net")]
+[assembly: AssemblyDescription("https://github.com/jerone/HostProfiles")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Shoot Sun Studio")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HostProfiles")]
-[assembly: AssemblyCopyright("Copyright © Shoot Sun Studio 2011")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.0.0.0")]
-[assembly: AssemblyFileVersion("2.0.0.0")]
+[assembly: AssemblyVersion("2.1.0.0")]
+[assembly: AssemblyFileVersion("2.1.0.0")]
