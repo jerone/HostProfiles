@@ -18,3 +18,4 @@ You can build the latest version from the source of download the release version
 Screenshot
 ----------
 ![Screenshot HostProfiles](https://raw.github.com/jerone/HostProfiles/master/Screenshot.jpg)
+![Screenshot HostProfiles](https://raw.github.com/jerone/HostProfiles/master/Screenshot2.jpg)
