@@ -34,5 +34,17 @@ namespace HostProfiles.Properties {
                 this["minimizeAtStatup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool showAsTable {
+            get {
+                return ((bool)(this["showAsTable"]));
+            }
+            set {
+                this["showAsTable"] = value;
+            }
+        }
     }
 }

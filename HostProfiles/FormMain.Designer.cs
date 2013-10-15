@@ -38,7 +38,6 @@
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.profilesImageList = new System.Windows.Forms.ImageList(this.components);
-			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.NotifyIconProfiles = new System.Windows.Forms.NotifyIcon(this.components);
 			this.systrayContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,8 +62,18 @@
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.TreeViewProfiles = new System.Windows.Forms.TreeView();
+			this.HostsDataGridView = new System.Windows.Forms.DataGridView();
+			this.LineIndexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.EnabledColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.IPAddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.DomainNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.TextBoxProfile = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.HostsViewSubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ApplySubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.MessageToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
 			this.profilesOffContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.profilesRealHostsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.newProfile2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,7 +85,9 @@
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.HostsDataGridView)).BeginInit();
 			this.tableLayoutPanel2.SuspendLayout();
+			this.menuStrip1.SuspendLayout();
 			this.profilesOffContextMenuStrip.SuspendLayout();
 			this.profilesRealHostsContextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
@@ -96,10 +107,10 @@
 			// applyToolStripMenuItem
 			// 
 			this.applyToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.applyToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Save_6530;
+			this.applyToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Event_594_exp;
 			this.applyToolStripMenuItem.Name = "applyToolStripMenuItem";
 			this.applyToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-			this.applyToolStripMenuItem.Text = "&Save";
+			this.applyToolStripMenuItem.Text = "&Apply";
 			this.applyToolStripMenuItem.Click += new System.EventHandler(this.applyToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator3
@@ -147,18 +158,6 @@
 			this.profilesImageList.Images.SetKeyName(1, "flag_16xLG.png");
 			this.profilesImageList.Images.SetKeyName(2, "FlagThread-Flagged,NotHot,NotSelected_10392_16x small.png");
 			this.profilesImageList.Images.SetKeyName(3, "FlagThread-Flagged,NotHot,NotSelected_10392_16x.png");
-			// 
-			// statusStrip1
-			// 
-			this.statusStrip1.BackColor = System.Drawing.SystemColors.Control;
-			this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.statusStrip1.GripMargin = new System.Windows.Forms.Padding(0);
-			this.statusStrip1.Location = new System.Drawing.Point(730, 0);
-			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(48, 26);
-			this.statusStrip1.SizingGrip = false;
-			this.statusStrip1.TabIndex = 8;
-			this.statusStrip1.Text = "statusStrip1";
 			// 
 			// NotifyIconProfiles
 			// 
@@ -234,7 +233,7 @@
 			this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
 			this.mainMenuStrip.Name = "mainMenuStrip";
 			this.mainMenuStrip.Padding = new System.Windows.Forms.Padding(0);
-			this.mainMenuStrip.Size = new System.Drawing.Size(730, 26);
+			this.mainMenuStrip.Size = new System.Drawing.Size(574, 24);
 			this.mainMenuStrip.TabIndex = 9;
 			this.mainMenuStrip.Text = "mainMenuStrip";
 			// 
@@ -245,7 +244,7 @@
             this.toolStripSeparator2,
             this.exitMainToolStripMenuItem});
 			this.fileMainToolStripMenuItem.Name = "fileMainToolStripMenuItem";
-			this.fileMainToolStripMenuItem.Size = new System.Drawing.Size(37, 26);
+			this.fileMainToolStripMenuItem.Size = new System.Drawing.Size(37, 24);
 			this.fileMainToolStripMenuItem.Text = "&File";
 			// 
 			// addProfileToolStripMenuItem
@@ -278,7 +277,7 @@
             this.flushDnsMainToolStripMenuItem,
             this.iisresetToolStripMenuItem});
 			this.toolsMainToolStripMenuItem.Name = "toolsMainToolStripMenuItem";
-			this.toolsMainToolStripMenuItem.Size = new System.Drawing.Size(48, 26);
+			this.toolsMainToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
 			this.toolsMainToolStripMenuItem.Text = "&Tools";
 			// 
 			// autoStartMainToolStripMenuItem
@@ -321,7 +320,7 @@
 			this.helpMainToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutMainToolStripMenuItem});
 			this.helpMainToolStripMenuItem.Name = "helpMainToolStripMenuItem";
-			this.helpMainToolStripMenuItem.Size = new System.Drawing.Size(44, 26);
+			this.helpMainToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
 			this.helpMainToolStripMenuItem.Text = "&Help";
 			// 
 			// aboutMainToolStripMenuItem
@@ -361,6 +360,7 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.Controls.Add(this.HostsDataGridView);
 			this.splitContainer1.Panel2.Controls.Add(this.TextBoxProfile);
 			this.splitContainer1.Size = new System.Drawing.Size(778, 327);
 			this.splitContainer1.SplitterDistance = 170;
@@ -386,18 +386,84 @@
 			this.TreeViewProfiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TreeViewProfiles_MouseDoubleClick);
 			this.TreeViewProfiles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TreeViewProfiles_MouseDown);
 			// 
+			// HostsDataGridView
+			// 
+			this.HostsDataGridView.AllowUserToAddRows = false;
+			this.HostsDataGridView.AllowUserToDeleteRows = false;
+			this.HostsDataGridView.AllowUserToOrderColumns = true;
+			this.HostsDataGridView.AllowUserToResizeRows = false;
+			this.HostsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.HostsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.HostsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.HostsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.LineIndexColumn,
+            this.EnabledColumn,
+            this.IPAddressColumn,
+            this.DomainNameColumn,
+            this.CommentColumn});
+			this.HostsDataGridView.Location = new System.Drawing.Point(4, 224);
+			this.HostsDataGridView.MultiSelect = false;
+			this.HostsDataGridView.Name = "HostsDataGridView";
+			this.HostsDataGridView.ReadOnly = true;
+			this.HostsDataGridView.RowHeadersVisible = false;
+			this.HostsDataGridView.Size = new System.Drawing.Size(594, 100);
+			this.HostsDataGridView.TabIndex = 1;
+			// 
+			// LineIndexColumn
+			// 
+			this.LineIndexColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.LineIndexColumn.DataPropertyName = "LineIndex";
+			this.LineIndexColumn.HeaderText = "No.";
+			this.LineIndexColumn.Name = "LineIndexColumn";
+			this.LineIndexColumn.ReadOnly = true;
+			this.LineIndexColumn.ToolTipText = "Line number";
+			this.LineIndexColumn.Width = 57;
+			// 
+			// EnabledColumn
+			// 
+			this.EnabledColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+			this.EnabledColumn.DataPropertyName = "Enabled";
+			this.EnabledColumn.HeaderText = "";
+			this.EnabledColumn.MinimumWidth = 24;
+			this.EnabledColumn.Name = "EnabledColumn";
+			this.EnabledColumn.ReadOnly = true;
+			this.EnabledColumn.ToolTipText = "Active";
+			this.EnabledColumn.Width = 24;
+			// 
+			// IPAddressColumn
+			// 
+			this.IPAddressColumn.DataPropertyName = "IPAddress";
+			this.IPAddressColumn.HeaderText = "IP Address";
+			this.IPAddressColumn.Name = "IPAddressColumn";
+			this.IPAddressColumn.ReadOnly = true;
+			// 
+			// DomainNameColumn
+			// 
+			this.DomainNameColumn.DataPropertyName = "DomainName";
+			this.DomainNameColumn.HeaderText = "Domain Name";
+			this.DomainNameColumn.Name = "DomainNameColumn";
+			this.DomainNameColumn.ReadOnly = true;
+			// 
+			// CommentColumn
+			// 
+			this.CommentColumn.DataPropertyName = "Comment";
+			this.CommentColumn.HeaderText = "Comment";
+			this.CommentColumn.Name = "CommentColumn";
+			this.CommentColumn.ReadOnly = true;
+			// 
 			// TextBoxProfile
 			// 
 			this.TextBoxProfile.AcceptsReturn = true;
 			this.TextBoxProfile.AcceptsTab = true;
-			this.TextBoxProfile.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.TextBoxProfile.Font = new System.Drawing.Font("Lucida Console", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-			this.TextBoxProfile.Location = new System.Drawing.Point(0, 0);
+			this.TextBoxProfile.Location = new System.Drawing.Point(4, 4);
 			this.TextBoxProfile.Margin = new System.Windows.Forms.Padding(4);
 			this.TextBoxProfile.Multiline = true;
 			this.TextBoxProfile.Name = "TextBoxProfile";
 			this.TextBoxProfile.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.TextBoxProfile.Size = new System.Drawing.Size(602, 327);
+			this.TextBoxProfile.Size = new System.Drawing.Size(594, 213);
 			this.TextBoxProfile.TabIndex = 0;
 			this.TextBoxProfile.WordWrap = false;
 			this.TextBoxProfile.TextChanged += new System.EventHandler(this.TextBoxProfile_TextChanged);
@@ -408,15 +474,60 @@
 			this.tableLayoutPanel2.ColumnCount = 2;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanel2.Controls.Add(this.menuStrip1, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.mainMenuStrip);
-			this.tableLayoutPanel2.Controls.Add(this.statusStrip1);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowCount = 2;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(778, 26);
 			this.tableLayoutPanel2.TabIndex = 11;
+			// 
+			// menuStrip1
+			// 
+			this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
+			this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.HostsViewSubToolStripMenuItem,
+            this.ApplySubToolStripMenuItem,
+            this.MessageToolStripTextBox});
+			this.menuStrip1.Location = new System.Drawing.Point(574, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(204, 24);
+			this.menuStrip1.TabIndex = 11;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// HostsViewSubToolStripMenuItem
+			// 
+			this.HostsViewSubToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.HostsViewSubToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.table_16xLG;
+			this.HostsViewSubToolStripMenuItem.Name = "HostsViewSubToolStripMenuItem";
+			this.HostsViewSubToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+			this.HostsViewSubToolStripMenuItem.ToolTipText = "Show as grid";
+			this.HostsViewSubToolStripMenuItem.Click += new System.EventHandler(this.HostsViewSubToolStripMenuItem_Click);
+			// 
+			// ApplySubToolStripMenuItem
+			// 
+			this.ApplySubToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.ApplySubToolStripMenuItem.Enabled = false;
+			this.ApplySubToolStripMenuItem.Image = global::HostProfiles.Properties.Resources.Event_594_exp;
+			this.ApplySubToolStripMenuItem.Name = "ApplySubToolStripMenuItem";
+			this.ApplySubToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+			this.ApplySubToolStripMenuItem.Text = "&Apply";
+			this.ApplySubToolStripMenuItem.Click += new System.EventHandler(this.ApplySubToolStripMenuItem_Click);
+			// 
+			// MessageToolStripTextBox
+			// 
+			this.MessageToolStripTextBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.MessageToolStripTextBox.BackColor = System.Drawing.SystemColors.Menu;
+			this.MessageToolStripTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.MessageToolStripTextBox.Name = "MessageToolStripTextBox";
+			this.MessageToolStripTextBox.Size = new System.Drawing.Size(100, 20);
+			this.MessageToolStripTextBox.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// profilesOffContextMenuStrip
 			// 
@@ -468,8 +579,11 @@
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.Panel2.PerformLayout();
 			this.splitContainer1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.HostsDataGridView)).EndInit();
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this.profilesOffContextMenuStrip.ResumeLayout(false);
 			this.profilesRealHostsContextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -481,7 +595,6 @@
 		private System.Windows.Forms.ContextMenuStrip profilesContextMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem applyToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.NotifyIcon NotifyIconProfiles;
 		private System.Windows.Forms.ContextMenuStrip systrayContextMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
@@ -517,6 +630,16 @@
 		private System.Windows.Forms.TreeView TreeViewProfiles;
 		private System.Windows.Forms.ColumnHeader columnHeaderName;
 		private System.Windows.Forms.TextBox TextBoxProfile;
+		private System.Windows.Forms.DataGridView HostsDataGridView;
+		private System.Windows.Forms.DataGridViewTextBoxColumn LineIndexColumn;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn EnabledColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn IPAddressColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn DomainNameColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn CommentColumn;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem HostsViewSubToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem ApplySubToolStripMenuItem;
+		private System.Windows.Forms.ToolStripTextBox MessageToolStripTextBox;
 	}
 }
 

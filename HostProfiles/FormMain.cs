@@ -1,9 +1,13 @@
 ﻿using HostProfiles.Properties;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace HostProfiles
@@ -23,6 +27,8 @@ namespace HostProfiles
 
 		const String _RegistryPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";  // HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
 		const String _ProgramName = "HostProfiles";
+
+		const String _HostsLine = @"^(?:(?<enabled>#)?[\s\t]*)?(?<ip>[\d\.:]+)[\s\t]+(?<domain>[\w\.:/]+)(?:[\s\t]+#[\s\t]?(?<comment>.*))?$";  /// http://regexr.com?36mk7
 
 		private String hosts = ReadHost();
 
@@ -44,6 +50,11 @@ namespace HostProfiles
 			toolsMainToolStripMenuItem.Text = toolsMainToolStripMenuItem.Text.ToUpper();
 			helpMainToolStripMenuItem.Text = helpMainToolStripMenuItem.Text.ToUpper();
 
+			ApplySubToolStripMenuItem.Text = ApplySubToolStripMenuItem.Text.ToUpper();
+
+			// Do this here, so we can still see both in the designer mode;
+			TextBoxProfile.Dock = DockStyle.Fill;
+			HostsDataGridView.Dock = DockStyle.Fill;
 #if LINUX
 			autoStartMainToolStripMenuItem.Enabled = false;
 #endif
@@ -57,6 +68,8 @@ namespace HostProfiles
 			{
 				Directory.CreateDirectory(basePath);
 			}
+
+			HostsView();
 
 			LoadProfiles();
 
@@ -96,7 +109,7 @@ namespace HostProfiles
 
 		#endregion Form;
 
-		#region Main ToolStrip;
+		#region Main Tool Strip;
 
 		private void addProfileToolStripMenuItem_Click(Object sender, EventArgs e)
 		{
@@ -146,7 +159,7 @@ namespace HostProfiles
 			ShowAbout();
 		}
 
-		#endregion Main ToolStrip;
+		#endregion Main Tool Strip;
 
 		#region TreeView;
 
@@ -161,11 +174,19 @@ namespace HostProfiles
 				hosts = ReadHost();
 				TextBoxProfile.Text = hosts;
 				TextBoxProfile.ReadOnly = true;
+
+				ApplySubToolStripMenuItem.Enabled = false;
+
+				Hosts2Grid(hosts);
 			}
 			else
 			{
 				TextBoxProfile.Text = TreeViewProfiles.SelectedNode.Tag.ToString();
 				TextBoxProfile.ReadOnly = false;
+
+				ApplySubToolStripMenuItem.Enabled = true;
+
+				Hosts2Grid(TreeViewProfiles.SelectedNode.Tag.ToString());
 			}
 		}
 
@@ -212,25 +233,9 @@ namespace HostProfiles
 		{
 			if (TreeViewProfiles.SelectedNode == null) return;
 
-			TreeNode selectedProfile = TreeViewProfiles.SelectedNode;
+			String selectedProfile = TreeViewProfiles.SelectedNode.Name;
 
-			if (selectedProfile.Name == RealHosts) return;
-
-			String selectedProfileHosts = selectedProfile.Tag.ToString();
-
-			if (selectedProfileHosts != TextBoxProfile.Text)
-			{
-				selectedProfile.Text = selectedProfile.Text.Replace(" *", "");
-
-				if (selectedProfile.NodeFont == boldFont && TextBoxProfile.Text != hosts)
-				{
-					selectedProfile.Text += " *";
-				}
-
-				selectedProfile.Tag = TextBoxProfile.Text;
-
-				File.WriteAllText(GetFullPath(selectedProfile.Name), selectedProfileHosts);
-			}
+			SaveProfile(selectedProfile);
 		}
 
 		private void TextBoxProfile_KeyDown(Object sender, KeyEventArgs e)
@@ -354,6 +359,26 @@ namespace HostProfiles
 
 		#endregion Context Menu;
 
+		#region Sub Tool Strip;
+
+		private void ApplySubToolStripMenuItem_Click(Object sender, EventArgs e)
+		{
+			if (TreeViewProfiles.SelectedNode == null) return;
+
+			String selectedProfile = TreeViewProfiles.SelectedNode.Name;
+
+			ApplyProfile(selectedProfile);
+		}
+
+		private void HostsViewSubToolStripMenuItem_Click(Object sender, EventArgs e)
+		{
+			Properties.Settings.Default.showAsTable = !Properties.Settings.Default.showAsTable;
+
+			HostsView();
+		}
+
+		#endregion Sub Tool Strip;
+
 		#region Private Methods;
 
 		private String GetFullPath(String name)
@@ -454,6 +479,31 @@ namespace HostProfiles
 			TreeViewProfiles.Nodes.Add(profileTreeNode);
 		}
 
+		private void SaveProfile(String profile)
+		{
+			TreeNode selectedProfile = TreeViewProfiles.Nodes[profile];
+
+			if (selectedProfile.Name == RealHosts) return;
+
+			String selectedProfileHosts = selectedProfile.Tag.ToString();
+
+			if (selectedProfileHosts != TextBoxProfile.Text)
+			{
+				selectedProfile.Text = selectedProfile.Text.Replace(" *", String.Empty);
+
+				if (selectedProfile.NodeFont == boldFont && TextBoxProfile.Text != hosts)
+				{
+					selectedProfile.Text += " *";
+				}
+
+				selectedProfile.Tag = TextBoxProfile.Text;
+
+				File.WriteAllText(GetFullPath(selectedProfile.Name), TextBoxProfile.Text);
+
+				LogMessage(Resources.Saving);
+			}
+		}
+
 		private void AddProfile(String profile, String hosts = "")
 		{
 			if (String.IsNullOrEmpty(profile)) return;
@@ -493,7 +543,7 @@ namespace HostProfiles
 
 			if (selectedProfile.Name == RealHosts) return;
 
-			selectedProfile.Text = selectedProfile.Text.Replace(" *", "");
+			selectedProfile.Text = selectedProfile.Text.Replace(" *", String.Empty);
 
 			foreach (TreeNode profileTreeNode in TreeViewProfiles.Nodes)
 			{
@@ -518,7 +568,7 @@ namespace HostProfiles
 
 			OverrideHostFile(selectedProfile.Tag.ToString());
 
-			ExecuteFlush();
+			ExecuteFlush(false);
 		}
 
 		private void RenameProfile(String profileOld, String profileNew)
@@ -634,6 +684,66 @@ namespace HostProfiles
 			return String.Empty;
 		}
 
+		private void HostsView()
+		{
+			if (Properties.Settings.Default.showAsTable)
+			{
+				TextBoxProfile.Visible = true;
+				HostsDataGridView.Visible = false;
+
+				HostsViewSubToolStripMenuItem.Image = Resources.table_16xLG;
+				HostsViewSubToolStripMenuItem.ToolTipText = Resources.ShowAsTable_Tooltip;
+			}
+			else
+			{
+				TextBoxProfile.Visible = false;
+				HostsDataGridView.Visible = true;
+
+				HostsViewSubToolStripMenuItem.Image = Resources.text_16xLG;
+				HostsViewSubToolStripMenuItem.ToolTipText = Resources.ShowAsText_Tooltip;
+			}
+		}
+
+		private void Hosts2Grid(String hosts)
+		{
+			List<HostRow> list = new List<HostRow>();
+
+			Int32 indexLine = 1;
+
+			String[] lines = hosts.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+			foreach (String line in lines)
+			{
+				if (!String.IsNullOrEmpty(line.Trim()))
+				{
+					Match matches = Regex.Match(line.Trim(), _HostsLine);
+					if (matches.Success)
+					{
+						HostRow row = new HostRow();
+						row.LineIndex = indexLine;
+						row.Enabled = matches.Groups["enabled"].Value != "#";
+						row.IPAddress = matches.Groups["ip"].Value;
+						row.DomainName = matches.Groups["domain"].Value;
+						row.Comment = matches.Groups["comment"].Value;
+						list.Add(row);
+					}
+				}
+				indexLine++;
+			}
+
+			HostsDataGridView.DataSource = list;
+		}
+
+		private class HostRow
+		{
+			public Int32 LineIndex { get; set; }
+			public Boolean Enabled { get; set; }
+			public String IPAddress { get; set; }
+			public String DomainName { get; set; }
+			public String Comment { get; set; }
+
+			public HostRow() { }
+		}
+
 		private Boolean OverrideHostFile(String content)
 		{
 			String path = Globals.HostPath;
@@ -652,9 +762,21 @@ namespace HostProfiles
 			return false;
 		}
 
-		private void ExecuteFlush()
+		private void ExecuteFlush(Boolean showMessage = true)
 		{
-			ProcessUtil.Execute(Globals.Flush, Globals.FlushArgs, "Flush DNS");
+			ProcessUtil.Execute(Globals.Flush, Globals.FlushArgs, "Flush DNS", showMessage);
+
+			LogMessage(Resources.DNSFlushed);
+		}
+
+		private void LogMessage(String message)
+		{
+			MessageToolStripTextBox.Text = message;
+
+			BackgroundWorker bgWorker = new BackgroundWorker();
+			bgWorker.DoWork += delegate(Object sender, DoWorkEventArgs e) { Thread.Sleep(800); };
+			bgWorker.RunWorkerCompleted += delegate(Object sender, RunWorkerCompletedEventArgs e) { MessageToolStripTextBox.Text = String.Empty; };
+			bgWorker.RunWorkerAsync();
 		}
 
 		private void ShowAbout()

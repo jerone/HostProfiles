@@ -134,6 +134,15 @@ namespace HostProfiles.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DNS flushed!.
+        /// </summary>
+        internal static string DNSFlushed {
+            get {
+                return ResourceManager.GetString("DNSFlushed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Profile.
         /// </summary>
         internal static string EditProfile_Title {
@@ -298,6 +307,33 @@ namespace HostProfiles.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saving....
+        /// </summary>
+        internal static string Saving {
+            get {
+                return ResourceManager.GetString("Saving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show as table.
+        /// </summary>
+        internal static string ShowAsTable_Tooltip {
+            get {
+                return ResourceManager.GetString("ShowAsTable.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show as text.
+        /// </summary>
+        internal static string ShowAsText_Tooltip {
+            get {
+                return ResourceManager.GetString("ShowAsText.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap StatusAnnotations_Help_and_inconclusive_16xLG {
@@ -318,11 +354,22 @@ namespace HostProfiles.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Waiting....
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static string Waiting {
+        internal static System.Drawing.Bitmap table_16xLG {
             get {
-                return ResourceManager.GetString("Waiting", resourceCulture);
+                object obj = ResourceManager.GetObject("table_16xLG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap text_16xLG {
+            get {
+                object obj = ResourceManager.GetObject("text_16xLG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

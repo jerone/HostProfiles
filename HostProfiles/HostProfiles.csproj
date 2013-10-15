@@ -130,6 +130,8 @@
     <Content Include="Resources\Instance_5746.png" />
     <Content Include="Resources\Rename_6779_32.png" />
     <Content Include="Resources\Save_6530.png" />
+    <Content Include="Resources\table_16xLG.png" />
+    <Content Include="Resources\text_16xLG.png" />
     <Content Include="Resources\WebForm%28ASPX%29_815_16x.png" />
     <None Include="app.config" />
     <None Include="Resources\Event_594_exp.png" />
