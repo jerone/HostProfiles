@@ -68,9 +68,9 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(109, 36);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(95, 17);
+			this.label2.Size = new System.Drawing.Size(94, 17);
 			this.label2.TabIndex = 2;
-			this.label2.Text = "Version: 2.1";
+			this.label2.Text = "Version: 2.2";
 			// 
 			// label3
 			// 
@@ -113,10 +113,10 @@
 			this.linkLabel1.AutoSize = true;
 			this.linkLabel1.Location = new System.Drawing.Point(204, 107);
 			this.linkLabel1.Name = "linkLabel1";
-			this.linkLabel1.Size = new System.Drawing.Size(240, 17);
+			this.linkLabel1.Size = new System.Drawing.Size(283, 17);
 			this.linkLabel1.TabIndex = 7;
 			this.linkLabel1.TabStop = true;
-			this.linkLabel1.Text = "http://hostprofiles.codeplex.com";
+			this.linkLabel1.Text = "https://github.com/jerone/HostProfiles";
 			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_LinkClicked);
 			// 
 			// label6

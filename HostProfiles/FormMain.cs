@@ -38,11 +38,11 @@ namespace HostProfiles
 		{
 			InitializeComponent();
 
-			this.Disposed += FormMain_Disposed;
+			Disposed += FormMain_Disposed;
 
 			basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + Path.DirectorySeparatorChar, "Profiles" + Path.DirectorySeparatorChar);
 
-			baseFont = this.Font;
+			baseFont = Font;
 			boldFont = new Font(baseFont, FontStyle.Bold);
 			italicFont = new Font(baseFont, FontStyle.Italic);
 
@@ -52,7 +52,7 @@ namespace HostProfiles
 
 			ApplySubToolStripMenuItem.Text = ApplySubToolStripMenuItem.Text.ToUpper();
 
-			// Do this here, so we can still see both in the designer mode;
+			// Do this here, so we can still see both in the designer mode.
 			TextBoxProfile.Dock = DockStyle.Fill;
 			HostsDataGridView.Dock = DockStyle.Fill;
 #if LINUX
@@ -114,7 +114,7 @@ namespace HostProfiles
 		private void addProfileToolStripMenuItem_Click(Object sender, EventArgs e)
 		{
 			String profileName = String.Empty;
-			if (ShowInputDialog(Resources.AddProfile_Title, ref profileName) == System.Windows.Forms.DialogResult.OK)
+			if (ShowInputDialog(Resources.AddProfile_Title, ref profileName) == DialogResult.OK)
 			{
 				AddProfile(profileName);
 			}
@@ -292,7 +292,7 @@ namespace HostProfiles
 		private void newProfileToolStripMenuItem_Click(Object sender, EventArgs e)
 		{
 			String profileName = String.Empty;
-			if (ShowInputDialog(Resources.AddProfile_Title, ref profileName) == System.Windows.Forms.DialogResult.OK)
+			if (ShowInputDialog(Resources.AddProfile_Title, ref profileName) == DialogResult.OK)
 			{
 				AddProfile(profileName);
 			}
@@ -307,7 +307,7 @@ namespace HostProfiles
 			if (selectedProfile != RealHosts) return;
 
 			String profileName = "_DEFAULT";
-			if (ShowInputDialog(Resources.AddProfile_Title, ref profileName) == System.Windows.Forms.DialogResult.OK)
+			if (ShowInputDialog(Resources.AddProfile_Title, ref profileName) == DialogResult.OK)
 			{
 				hosts = ReadHost();
 				AddProfile(profileName, hosts);
@@ -466,7 +466,7 @@ namespace HostProfiles
 		private void AddNodeToTreeView(TreeNode node)
 		{
 			TreeViewProfiles.Nodes.Add(node);
-			node.Text = node.Text;  //Reset the node text after adding to force the UI to update to account for bold font taking up more space
+			node.Text = node.Text;  // Reset the node text after adding to force the UI to update to account for bold font taking up more space.
 		}
 
 		private void LoadRealProfile()
@@ -520,7 +520,7 @@ namespace HostProfiles
 				{
 					MessageBox.Show(Resources.ProfileExists);
 
-					if (ShowInputDialog(Resources.AddProfile_Title, ref profile) == System.Windows.Forms.DialogResult.OK)
+					if (ShowInputDialog(Resources.AddProfile_Title, ref profile) == DialogResult.OK)
 					{
 						AddProfile(profile, hosts);
 					}
@@ -780,8 +780,8 @@ namespace HostProfiles
 			MessageToolStripTextBox.Text = message;
 
 			BackgroundWorker bgWorker = new BackgroundWorker();
-			bgWorker.DoWork += delegate(Object sender, DoWorkEventArgs e) { Thread.Sleep(800); };
-			bgWorker.RunWorkerCompleted += delegate(Object sender, RunWorkerCompletedEventArgs e) { MessageToolStripTextBox.Text = String.Empty; };
+			bgWorker.DoWork += delegate (Object sender, DoWorkEventArgs e) { Thread.Sleep(800); };
+			bgWorker.RunWorkerCompleted += delegate (Object sender, RunWorkerCompletedEventArgs e) { MessageToolStripTextBox.Text = String.Empty; };
 			bgWorker.RunWorkerAsync();
 		}
 
@@ -793,14 +793,14 @@ namespace HostProfiles
 
 		private void HideShow()
 		{
-			if (this.Visible)
+			if (Visible)
 			{
-				this.Hide();
+				Hide();
 				showToolStripMenuItem.Text = "&Show";
 			}
 			else
 			{
-				this.Show();
+				Show();
 				showToolStripMenuItem.Text = "&Hide";
 			}
 		}
@@ -813,7 +813,7 @@ namespace HostProfiles
 
 		private static DialogResult ShowInputDialog(String title, ref String input)
 		{
-			System.Drawing.Size size = new System.Drawing.Size(200, 70);
+			Size size = new Size(200, 70);
 			Form inputBoxForm = new Form();
 
 			inputBoxForm.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -821,21 +821,21 @@ namespace HostProfiles
 			inputBoxForm.Text = title;
 
 			TextBox textBox = new TextBox();
-			textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
-			textBox.Location = new System.Drawing.Point(5, 5);
+			textBox.Size = new Size(size.Width - 10, 23);
+			textBox.Location = new Point(5, 5);
 			textBox.Text = input;
 			inputBoxForm.Controls.Add(textBox);
 
 			Button okButton = new Button();
 			okButton.DialogResult = DialogResult.OK;
 			okButton.Name = "okButton";
-			okButton.Size = new System.Drawing.Size(75, 23);
+			okButton.Size = new Size(75, 23);
 			okButton.Text = Resources.Ok;
-			okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
+			okButton.Location = new Point(size.Width - 80 - 80, 39);
 			okButton.Enabled = textBox.Text.Length > 0;
 			inputBoxForm.Controls.Add(okButton);
 			inputBoxForm.AcceptButton = okButton;
-			textBox.TextChanged += delegate(Object sender, EventArgs e)
+			textBox.TextChanged += delegate (Object sender, EventArgs e)
 			{
 				okButton.Enabled = textBox.Text.Length > 0;
 			};
@@ -843,9 +843,9 @@ namespace HostProfiles
 			Button cancelButton = new Button();
 			cancelButton.DialogResult = DialogResult.Cancel;
 			cancelButton.Name = "cancelButton";
-			cancelButton.Size = new System.Drawing.Size(75, 23);
+			cancelButton.Size = new Size(75, 23);
 			cancelButton.Text = Resources.Cancel;
-			cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
+			cancelButton.Location = new Point(size.Width - 80, 39);
 			inputBoxForm.Controls.Add(cancelButton);
 			inputBoxForm.CancelButton = cancelButton;
 

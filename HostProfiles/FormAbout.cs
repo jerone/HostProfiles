@@ -11,12 +11,12 @@ namespace HostProfiles
 			InitializeComponent();
 		}
 
-		private void ButtonOK_Click(object sender, EventArgs e)
+		private void ButtonOK_Click(Object sender, EventArgs e)
 		{
-			this.DialogResult = DialogResult.OK;
+			DialogResult = DialogResult.OK;
 		}
 
-		private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		private void linkLabel_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			LinkLabel link = sender as LinkLabel;
 			if (link != null)
