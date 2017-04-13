@@ -459,10 +459,15 @@ namespace HostProfiles
 				profileToolStripItem.Image = profilesImageList.Images[0];
 			}
 
-			TreeViewProfiles.Nodes.Add(profileTreeNode);
-
+			AddNodeToTreeView(profileTreeNode);
 			switchProfilesToolStripMenuItem.DropDownItems.Add(profileToolStripItem);
 		}
+
+	    private void AddNodeToTreeView(TreeNode node)
+	    {
+	        TreeViewProfiles.Nodes.Add(node);
+	        node.Text = node.Text;  //Reset the node text after adding to force the UI to update to account for bold font taking up more space
+	    }
 
 		private void LoadRealProfile()
 		{
@@ -476,7 +481,7 @@ namespace HostProfiles
 			profileTreeNode.NodeFont = italicFont;
 			profileTreeNode.ImageIndex = profileTreeNode.SelectedImageIndex = 2;
 
-			TreeViewProfiles.Nodes.Add(profileTreeNode);
+			AddNodeToTreeView(profileTreeNode);
 		}
 
 		private void SaveProfile(String profile)
@@ -554,6 +559,7 @@ namespace HostProfiles
 				{
 					profileTreeNode.NodeFont = boldFont;
 					profileTreeNode.ImageIndex = profileTreeNode.SelectedImageIndex = 1;
+				    profileTreeNode.Text = profileTreeNode.Text;
 					profileToolStripItem.Font = boldFont;
 					profileToolStripItem.Image = profilesImageList.Images[1];
 				}
